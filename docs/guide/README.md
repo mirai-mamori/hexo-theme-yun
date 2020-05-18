@@ -18,6 +18,8 @@ hexo server
 
 你也可以加入 [QQ 群](https://shang.qq.com/wpa/qunwpa?idkey=3bd19a05aaccb2b60c396295c8617b3a9e667821a495e8cd7e1698ff95ab61c6)（389401003）进行反馈与讨论。
 
+- [更新日志](https://github.com/YunYouJun/hexo-theme-yun/releases)
+
 ## 快速开始
 
 ::: tip 渲染器
@@ -39,6 +41,8 @@ yarn add hexo-render-pug hexo-renderer-stylus
 ### 安装主题
 
 进入您的 Hexo 博客根目录，克隆或下载 `hexo-theme-yun` 主题，置于 `themes/yun`。
+
+> 你也可以考虑加上 `--depth 1` 的参数来只克隆当前版本（体积更下，速度更快）。
 
 ```sh
 git clone -b master https://github.com/YunYouJun/hexo-theme-yun themes/yun
@@ -114,10 +118,10 @@ git pull
 
 > [head 头部资源](/guide/config.html#head-头部资源)
 
-譬如，你想为网站全局添加一个 Aplayer 播放器挂件。
+譬如，你想为网站全局添加一个 Aplayer 播放器挂件。（实际上，现在你可以根据这里的 [配置](/guide/additional-package-support.html#全局音乐播放器) 直接开启全局播放器。）
 
-> 目前并不推荐，本主题尚未支持 PJAX，所以当你跳转页面时，音乐会产生中断。
-> 未来将考虑添加 PJAX 支持（可自行配置决定是否开启），但短期内未必实现。
+这里主要起一个示例作用。
+
 > 文章内部播放器，你可以考虑直接使用 [hexo-tag-aplayer](https://github.com/MoePlayer/hexo-tag-aplayer)
 
 你可以在 Hexo 根目录的 `source/js` 文件夹下新建 `load-aplayer.js` 文件。

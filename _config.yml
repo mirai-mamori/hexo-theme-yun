@@ -22,6 +22,7 @@ favicon: /yun.svg
 
 # Posts / Categories / Tags in sidebar.
 sidebar:
+  src: /js/sidebar.js
   bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-1.jpg
   bg_position: bottom 1rem center
 
@@ -72,22 +73,22 @@ social:
     link: https://space.bilibili.com/1579790
     icon: icon-bilibili-line
     color: "#FF8EB3"
-  - name: POPI
-    link: https://www.popiask.cn/elpsycn
-    icon: icon-questionnaire-line
-    color: "#525252"
-  - name: 微信公众号
-    link: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/about/white-qrcode-and-search.jpg
-    icon: icon-wechat-2-line
-    color: "#1AAD19"
+  # - name: POPI
+  #   link: https://www.popiask.cn/elpsycn
+  #   icon: icon-questionnaire-line
+  #   color: "#525252"
+  # - name: 微信公众号
+  #   link: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/about/white-qrcode-and-search.jpg
+  #   icon: icon-wechat-2-line
+  #   color: "#1AAD19"
   - name: Twitter
     link: https://twitter.com/YunYouJun
     icon: icon-twitter-line
     color: "#1da1f2"
-  - name: Telegram
-    link: https://t.me/YunYouJun
-    icon: icon-telegram-line
-    color: "#0088CC"
+  # - name: Telegram
+  #   link: https://t.me/YunYouJun
+  #   icon: icon-telegram-line
+  #   color: "#0088CC"
   - name: Telegram Channel
     link: https://t.me/elpsycn
     icon: icon-telegram-fill
@@ -112,14 +113,10 @@ anonymous_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg
 albums:
   enable: false
   icon: icon-gallery-line
+  src: /js/gallery-decrypt.js
 
 girls:
   enable: false
-
-banner:
-  enable: true
-  title: 云游君的小站
-  src: /js/ui/banner.js
 
 # Sidebar Avatar
 avatar:
@@ -137,13 +134,13 @@ menu:
     path: /
     icon: icon-home-4-line
   archives:
-    path: /archives
+    path: /archives/
     icon: icon-archive-line
   tags:
-    path: /tags
+    path: /tags/
     icon: icon-price-tag-3-line
   categories:
-    path: /categories
+    path: /categories/
     icon: icon-folder-2-line
   custom:
     title: 文档
@@ -160,10 +157,13 @@ tag_cloud:
   width: 300
   height: 300
 
+wordcloud:
+  enable: false
+
 # You can set color for every tag or category.
 tags:
   Vue: "#4fc08d"
-  Hexo: "0E834D"
+  Hexo: "#0E83CD"
   CSS: "#5298d1"
   Node.js: "#026E00"
   Git: "#F14E32"
@@ -218,7 +218,6 @@ preload:
   style:
     - /css/hexo-theme-yun.css
   script:
-    - /js/utils.js
     - /js/hexo-theme-yun.js
 
 prefetch:
@@ -240,7 +239,8 @@ lazyload:
 
 # pjax
 pjax:
-  enable: true
+  enable: false
+  src: /js/pjax.js
 
 # stylesheets loaded in the <head>
 css:
@@ -248,7 +248,6 @@ css:
 
 # scripts loaded in the end of the body
 js:
-  - /js/utils.js
   - /js/hexo-theme-yun.js
 
 # custom your assets in head
@@ -265,9 +264,6 @@ cdn:
   # pre: https://cdn.jsdelivr.net/gh/YunYouJun/yunyoujun.github.io
   css:
   # Todo:
-  # font
-  # font: https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap
-  # font: https://fonts.loli.net/css?family=Montserrat
   # icon
   # material-design-icons: https://fonts.googleapis.com/icon?family=Material+Icons+Outlined
   # markdown
@@ -277,7 +273,7 @@ cdn:
   js:
     base:
     async:
-      iconfont: //at.alicdn.com/t/font_1140697_n3htx7s57pp.js
+      iconfont: //at.alicdn.com/t/font_1140697_4i778vmn3jg.js
     defer:
 
 # cdn for third-party library (alternative include)
@@ -304,25 +300,45 @@ vendors:
     css: https://cdn.jsdelivr.net/npm/lightgallery.js@latest/dist/css/lightgallery.min.css
     js: https://cdn.jsdelivr.net/npm/lightgallery.js@latest/dist/js/lightgallery.min.js
   pjax: https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js
-  fireworks: /js/ui/fireworks.js
-  search: /js/search/index.js
-  sidebar: /js/sidebar.js
+  crypto_js:
+    all: https://cdn.jsdelivr.net/npm/crypto-js@latest/crypto-js.js
+  wordcloud: https://cdn.jsdelivr.net/npm/wordcloud@1.1.1/src/wordcloud2.js
+  # https://github.com/SukkaW/DisqusJS
+  disqusjs:
+    css: https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css
+    js: https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js
 
 # UI
+banner:
+  enable: true
+  title: 云游君的小站
+  src: /js/ui/banner.js
+  cloud:
+    enable: true
+    color: "white"
+  go_down:
+    enable: true
+    icon: icon-arrow-down-s-line
+
 # You can import the font you want in the head.
 font:
+  cdn:
+    enable: true
+    lib:
+      - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&family=Source+Code+Pro&display=swap
   serif:
-    family: "'Noto Serif SC', 'Songti SC', STZhonngSong, STKaiti, KaiTi, Roboto, serif"
+    family: "'Songti SC', 'Noto Serif SC', STZhongsong, STKaiti, KaiTi, Roboto, serif"
     weight: 900
   sans_serif:
-    family: "Lato, 'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif"
+    family: "'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif"
     weight: 300
   monospace:
-    family: "'Courier New', Courier, Consolas, Monaco, monospace"
+    family: "'Source Code Pro', 'Courier New', Courier, Consolas, Monaco, monospace"
 
 # custom your color in fireworks
 fireworks:
   enable: true
+  src: /js/ui/fireworks.js
   colors:
     - "102, 167, 221"
     - "62, 131, 225"
@@ -472,35 +488,15 @@ say:
 # you can new JSON file in your blog root folder
 # example: source/data/sentences.json
 # then set say.api: /data/sentences.json
-# https://say.elpsy.cn
-# [
-#   {
-#     "content": "Hello, World!",
-#     "author": "Brian Kernighan",
-#     "from": "The C Programming Language"
-#   },
-#   {
-#     "content": "我们一日日度过的所谓日常，实际上可能是接连不断的奇迹。",
-#     "from": "日常"
-#   },
-#   {
-#     "content": "是啊，我所爱的，即非群星，也非银河。",
-#     "author": "云游君",
-#     "from": "yunyoujun.cn"
-#   },
-#   {
-#     "content": "隐约雷鸣 阴霾天空 但盼风雨来 能留你在此",
-#     "from": "万叶集·雷神短歌"
-#   }
-# ]
+# Example: https://say.elpsy.cn/sentences.json
 
 # Comments
 # -------
 comment:
   enable: true
+  icon: icon-chat-3-line
   tips:
-    - 若您无 GitHub 账号，可直接在下方匿名评论。
-    - 若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。
+    - 点击按钮跳转 GitHub Issues 评论。
     - 若没有本文 Issue，您可以使用 Comment 模版新建。
 
 # GitHub Issues Link Button
@@ -514,21 +510,32 @@ github_issues:
 # Valine
 # You can get your appid and appkey from https://leancloud.cn
 # More info available at https://valine.js.org
+# extend: https://github.com/DesertsP/Valine-Admin
 valine:
   enable: false
   appId: # your leancloud application appid
   appKey: # your leancloud application appkey
-  serverURLs:
-  # another choice: https://github.com/DesertsP/Valine-Admin
-  # lang: zh-CN
-  notify: false # mail notifier, See: https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
   placeholder: Just go go # comment box placeholder
   avatar: # gravatar style
-  meta: nick,mail,link # custom comment header
+  # meta:
+  #   - nick
+  #   - mail
+  #   - link
   pageSize: 10 # pagination size
+  # lang: zh-CN
   visitor: false
-  visitor_index: false
+  highlight: true
+  recordIP: false
+  # serverURLs:
+  # Emoji See: https://valine.js.org/emoji.html
+  # emojiCDN: //i0.hdslb.com/bfs/emote/
+  # emojiMaps:
+  #   tv_doge: 6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png
+  #   more...
+  enableQQ: true
+  # requiredFields:
+  #   - nick
+  #   - mail
 
 # MiniValine
 # You can get your appid and appkey from https://leancloud.cn
@@ -546,6 +553,18 @@ minivaline:
   # Available values: en  | zh-CN | (and many more)
   # More i18n info: https://github.com/MiniValine/minivaline-i18n
   lang:
+
+disqus:
+  enable: false
+  shortname: yunyoujun
+  count: false
+
+# https://github.com/SukkaW/DisqusJS
+disqusjs:
+  enable: false
+  shortname: yunyoujun
+  count: false
+  apikey:
 
 # Show Views / Visitors of the website / page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi
@@ -613,6 +632,30 @@ katex:
 aplayer:
   global: false
   meting: true
+  # https://github.com/metowolf/MetingJS/tree/v1.2#option
+  widget:
+    enable: false
+    meting: true
+    audio:
+      - name: 星宿计时
+        artist: 杉田朗/洛天依
+        url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/audio/star-timer.mp3
+        cover: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0.jpg
+    option:
+      id: 308168565
+      server: netease
+      type: playlist
+      autoplay: false
+      # theme: "#2980b9"
+      loop: all
+      order: list
+      preload: auto
+      volume: 0.7
+      mutex: true
+      lrctype: 0
+      listfolded: false
+      listmaxheight: 340px
+      storagename: metingjs
 
 # special
 mourn:

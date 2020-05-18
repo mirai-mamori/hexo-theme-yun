@@ -1,7 +1,11 @@
 # Hexo-Theme-Yun
 
-![Docs](https://github.com/YunYouJun/hexo-theme-yun/workflows/Docs/badge.svg)
+[![Docs](https://github.com/YunYouJun/hexo-theme-yun/workflows/docs/badge.svg)](https://yun.yunyoujun.cn)
+[![GitHub package.json dependency version (dev dep on branch)](https://img.shields.io/github/package-json/dependency-version/YunYouJun/yunyoujun.github.io/hexo/hexo)](https://hexo.io)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/YunYouJun/hexo-theme-yun)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/YunYouJun/hexo-theme-yun)
+[![QQ Group](https://img.shields.io/badge/qq%20group-389401003-12B7F5)](https://shang.qq.com/wpa/qunwpa?idkey=3bd19a05aaccb2b60c396295c8617b3a9e667821a495e8cd7e1698ff95ab61c6)
+[![SATA License](https://img.shields.io/badge/license-SATA-green.svg)](https://github.com/zTrix/sata-license)
 
 <p align="center">
   <img width="128" src="docs/.vuepress/public/logo.gif">
@@ -126,6 +130,13 @@ If you are using this theme, welcome to leave your site in [Demo Sites | Example
         <img width="80px" src="https://cdn.jsdelivr.net/gh/imoshanghua/file/img/avatar.jpg"/>
         <br />
         <sub title="待我熬尽一日苦，喂你一口甜！">陌上花的小栈</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://misaki.page/" target="_blank">
+        <img width="80px" src="https://misaki.page/avatar-512x512.png"/>
+        <br />
+        <sub title="疲惫生活中总要有些温暖梦想">西地兰的忧郁</sub>
       </a>
     </td>
   </tr>

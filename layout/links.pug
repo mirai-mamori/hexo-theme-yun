@@ -1,8 +1,5 @@
 extends _partial/layout.pug
 
-prepend title
-  | #{page.title} | 
-
 block content
   #page
     +page_header(page.title)
@@ -72,7 +69,3 @@ block content
     article.post-block
       section.post-body(itemprop='articleBody')
         .post-content(class='post-markdown')!= page.content
-
-  if page.comments && theme.comment.enable
-    include ./_third-party/comments/index.pug
-

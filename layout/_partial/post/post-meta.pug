@@ -44,6 +44,8 @@
             |  
             span(title=__('symbols_count_time.time'))=symbolsTime(post.content, theme.symbols_count_time.awl, theme.symbols_count_time.wpm, __('symbols_count_time.time_minutes'))
 
+
+
   if is_post() && theme.busuanzi.enable && theme.busuanzi.page_pv
     span.post-busuanzi
       span.post-meta-divider='-'
@@ -60,6 +62,13 @@
         |  
         span.leancloud-visitors-count
 
+  if theme.disqus.count
+    span.post-meta-divider='-'
+    span.post-meta-item-icon(title=__('post.comments_count'))
+      +icon(theme.comment.icon)
+    |  
+    a(href=url_for(page.path) + '#disqus_thread')
+
   if is_post()
     .post-classify
       if post.categories && post.categories.length && theme.post_meta.categories
@@ -68,7 +77,7 @@
             +icon('icon-folder-line')
           |  
           for category, index in post.categories.data
-            span(itemprop='about', itemscope, itemtype='http://schema.org/Thing')
+            span(itemprop='about', itemscope, itemtype='https://schema.org/Thing')
               if category.name in theme.categories
                 - var categoryColor = theme.categories[category.name]
               a.category(href=url_for(category.path), style= categoryColor ? `--text-color:${categoryColor}`:'' itemprop='url' rel='index')

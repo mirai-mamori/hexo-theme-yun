@@ -4,7 +4,7 @@
 
 > 你可能需要先了解 Hexo 的 [Front-matter](https://hexo.io/zh-cn/docs/front-matter.html)
 
-如果想要让页面链接显示在侧边栏中，你还需要配置一下导航 [侧边栏 - 页面链接](/guide/config.html#页面链接)。
+如果想要让扩展页面链接（如：Girls, 相册等）显示在侧边栏中，你还需要配置一下导航 [侧边栏 - 页面链接](/guide/config.html#页面链接)。
 
 ## 文章
 
@@ -51,18 +51,23 @@ description: xxxxxxx
 
 通用页面的配置。
 
+- `title`: 设置页面标题（可以对默认标题进行覆盖）
 - `icon`: 页面标题前的图标
+
+> 标签、分类、相册等页面未设置标题时将默认使用语言包中的翻译（显示对应语言的 `标签`/`分类`/`相册` 等。）
+> 你可以通过设置 `title` 来覆盖这些页面的标题。
 
 譬如：
 
-```md {3}
+```yml {3}
 ---
 title: xxx
 icon: icon-women-line
 ---
+
 ```
 
-> 效果可见: [Lovely Girls](https://www.yunyoujun.cn/girls/)
+> 图标效果可见: [Lovely Girls](https://www.yunyoujun.cn/girls/)
 
 ## 标签 tags
 
@@ -76,15 +81,25 @@ hexo new page tags
 
 修改 `source/tags/index.md` 的 `Front Matter`
 
-```yml {5}
+```yml {4}
 ---
-title: 标签
 date: 2017-10-09 19:11:58
 comments: false
 type: tags
 ---
 
 ```
+
+你可以在 `yun.yml` 中设置：
+
+```yml
+wordcloud:
+  enable: true
+```
+
+来使用彩色的词云替代原生的标签云。
+
+> 仅会在标签页自动引入 [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 
 ## 分类 categories
 
@@ -98,9 +113,8 @@ hexo new page categories
 
 修改 `source/categories/index.md` 的 `Front Matter`
 
-```yml {5}
+```yml {4}
 ---
-title: 分类
 date: 2017-10-12 10:47:16
 comments: false
 type: categories
@@ -111,6 +125,10 @@ type: categories
 ## 归档 archives
 
 Hexo 默认支持
+
+本主题采用时间轴的形式重写
+
+> 示例：<https://www.yunyoujun.cn/archives>
 
 ## 关于 About
 
@@ -268,6 +286,8 @@ girls:
 
 可参考我的[配置](https://github.com/YunYouJun/yunyoujun.github.io/blob/hexo/source/girls/index.md)。
 
+如果想要让 Girls 显示在侧边栏中，你还需要配置一下导航 [侧边栏 - 页面链接](/guide/config.html#页面链接)。
+
 ## 相册 albums
 
 存在一个相册主页，放置多个相册，点击进入相册查看更多照片。
@@ -282,6 +302,8 @@ albums:
 [相册示例](https://www.yunyoujun.cn/albums/)
 
 [配置示例](https://github.com/YunYouJun/yunyoujun.github.io/blob/hexo/source/albums/index.md)
+
+如果想要让相册显示在侧边栏中，你还需要配置一下导航 [侧边栏 - 页面链接](/guide/config.html#页面链接)。
 
 ### 相册集
 
@@ -300,9 +322,8 @@ hexo new page albums
 - `cover`: 相册封面
 - `desc`: 相册描述
 
-```yml {3}
+```yml {2}
 ---
-title: 相册集
 type: albums
 albums:
   - caption: 夕阳西下
@@ -335,12 +356,25 @@ hexo new page --path albums/sunset "夕阳"
 
 > 注意：这里是 `layout` 而不是 `type`。
 
+::: tip
+你还可以设置 `gallery_password` 来对相册进行加密。（记得将你的仓库设置为私有。）
+
+没有直接命名为 `password` 以防止与 [hexo-blog-encrypt](https://github.com/MikeCoder/hexo-blog-encrypt) 插件关键字 `password` 冲突。
+
+> 因为使用了 [crypto-js](https://github.com/brix/crypto-js)，所以你还需要 `npm install crypto-js`。
+
+测试页面：<https://www.yunyoujun.cn/albums/sunset.html>
+测试密码：test
+
+:::
+
 ```yml {5}
 ---
 title: 夕阳
 date: 2020-04-18 16:27:24
 updated: 2020-04-18 16:27:24
 layout: gallery
+password: test
 photos:
   - caption: 我
     src: https://interactive-examples.mdn.mozilla.net/media/examples/elephant-660-480.jpg
@@ -351,3 +385,6 @@ photos:
 ---
 
 ```
+
+> 为什么使用相册集作为 `albums`，`gallery` 作为相册 ？
+> [What is the Difference Between Albums vs Galleries in WordPress](https://enviragallery.com/what-is-the-difference-between-albums-vs-galleries-in-wordpress/)

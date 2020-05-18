@@ -16,6 +16,36 @@
 
 默认语言为中文 `zh-CN`。
 
+> 站点的语言需要自己在 Hexo 目录下的 `_config.yml` 中设置。
+
+```yml
+language: zh-CN
+```
+
+### 个性化语言包
+
+在 Hexo 工作目录下新建 `source/_data/languages.yml`。（若 `source/_data` 目录不存在，请新建。）
+
+采用约定大于配置的方式，您仅需在 `languages.yml` 中自定义您想要覆盖的语言，其余将自动与主题默认配置合并。（这样做也更方便日后的升级）
+
+配置方式参考下例：
+
+```yml
+en: # 将要覆盖的语言
+  menu:
+    home: My Index
+
+ja: # 将要覆盖的语言
+  menu:
+    home: マイインデックス
+
+zh-CN: # 将要覆盖的语言
+  menu:
+    home: 我的主页
+```
+
+如果仅使用中文语言，除 `zh-CN` 项目均可删除。
+
 ## 主题色
 
 自定义主题的主色调。
@@ -41,7 +71,7 @@ colors:
 ```yml
 tags:
   Vue: "#4fc08d"
-  Hexo: "0E834D"
+  Hexo: "#0E834D"
   CSS: "#5298d1"
   Node.js: "#026E00"
   Git: "#F14E32"
@@ -97,8 +127,7 @@ favicon: /favicon.ico
 
 譬如：亮色浏览器 LOGO 为黑色描边，暗色浏览器 LOGO 为白色描边。
 
-你的图标须为 `svg` 文件，并为其添加对应样式。
-
+> 如果你想要为自己的图标添加该特性，你的图标须为 `svg` 文件，并为其添加对应样式。
 > 你可以参考我的 LOGO SVG 代码。[yun.svg](https://github.com/YunYouJun/hexo-theme-yun/blob/dev/source/yun.svg)
 
 Example:
@@ -151,7 +180,7 @@ cdn:
 
 > 注意将 `https://cdn.jsdelivr.net/gh/` 后替换为你的 GitHub 用户名和仓库名（也可以添加所在分支，譬如 `@master`）。  
 > `@latest` 为使用最新版本（但它仍然会被缓存，**且需要 12 h 才能更新**，如果你需要强制刷新，请参考 [Purge cache](https://github.com/jsdelivr/jsdelivr#purge-cache)）
-> 此外，请确保你的头像图片链接使用 `/images/xxx.jpg` 而非 `https://xxx/xxx.jpg` 的形式。
+> ~~请记住，白嫖是有代价的~~
 
 ```yml
 cdn:
@@ -203,7 +232,6 @@ preload:
   style:
     - /css/hexo-theme-yun.css
   script:
-    - /js/utils.js
     - /js/hexo-theme-yun.js
 
 prefetch:
@@ -222,21 +250,23 @@ preconnect:
 
 ## 图标 Icon
 
-本主题默认使用 Remix Icon 的部分图标，并通过 iconfont 生成的 cdn 加载。
+本主题默认使用 [Remix Icon](https://remixicon.com/) 的部分图标，并通过 [iconfont](https://www.iconfont.cn/) 生成的 cdn 加载。
 
-如您想要使用其他图标，推荐以下几种图标。
+> 默认支持的图标列表见 [/guide/icon.html]
 
-- 推荐方式零：只下载必要的 svg 存储为 CDN ，只在必要时使用（不引入 css 以尽可能提高速度）。
-- 推荐方式一：使用 `font-awesome`，省时省力。
-- 推荐方式二：全部使用自定义 `iconfont` 图标集。（速度快，但需自行配置）
-- 推荐方式三：`ionicons` 加载与 `iconfont` 自定义搭配使用。
+如您想要使用其他图标，可以采用以下几种图标和使用方式。
+
+- 方式一：最为推荐，全部使用自定义 `iconfont` 图标集。（速度快，但需自行配置）
+- 方式二：自由在 [head](#head-头部资源) 引入字体图标的 css 样式文件，直接传入对应 `class` 名称即可。（往往会引入全部的图标资源，虽然一次性引入很方便，但很多图标其实用不到。）
 
 ::: tip
 你完全可以前往 [iconfont](https://www.iconfont.cn/) 自定义一套你的图标集，并覆盖 [CDN](#CDN) 所引入的图标资源。  
-如果你只是想增添额外几个图标，你最好在 [head](#head-头部资源) 处引入，而不是直接覆盖。  
+如果你只是想额外增添几个图标，你最好在 [head](#head-头部资源) 处引入，而不是直接覆盖。  
 :::
 
 下面给出了一些基础图标的使用方法。
+
+本主题对以下几种图标的使用进行了适配。
 
 ### [iconfont](https://www.iconfont.cn/)
 
@@ -263,19 +293,6 @@ head:
 
 简洁、优雅、开源。
 
-### [Font-Awesome](https://fontawesome.com)
-
-- GitHub: [Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
-- CDN: <https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css>
-
-图标多而全，含各类商标图标，但部分收费，且文件较大。
-
-```html
-<i class="fas fa-home"></i>
-```
-
-如使用 `Font-Awesome`，图标相关配置中请如下填写：`fas fa-home`。
-
 ### [Ionicons](https://ionicons.com)
 
 - GitHub: [ionicons](https://github.com/ionic-team/ionicons)
@@ -288,51 +305,88 @@ head:
 
 可根据 `Android/iOS` 平台自动切换适合的风格 `Material/iOS`。
 
-```html
-<!-- 比 unpkg 快 -->
-<!-- https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons.js -->
-<script src="https://unpkg.com/ionicons/dist/ionicons.js"></script>
+本主题已对 `ion-icon` 标签引入的方式进行了适配，如下配置即可。
+
+```yml
+head:
+  js:
+    async: https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons.js
 ```
 
-```html
-<ion-icon name="heart"></ion-icon>
+```yml
+icon: ion-icon heart
 ```
-
-如使用 Web Component `ion-icon`，图标相关配置中请如下填写：`ion-icon heart`。
 
 #### 加载方式二： CSS 引入
 
-```html
-<!-- 比 unpkg 快 -->
-<!-- https://cdn.jsdelivr.net/npm/ionicons/dist/css/ionicons.min.css -->
-<link
-  href="https://unpkg.com/ionicons/dist/css/ionicons.min.css"
-  rel="stylesheet"
-/>
+与其他 CSS 引入字体图标的方式相同。
+
+```yml
+head:
+  css:
+    ionicons: https://cdn.jsdelivr.net/npm/ionicons/dist/css/ionicons.min.css
 ```
 
-```html
-<i class="icon ion-md-heart"></i>
+```yml
+icon: icon ion-md-heart
 ```
-
-如使用 `font-class` 方式，图标相关配置中请如下填写：`icon ion-md-heart`。
 
 ### [Material Design icons](https://google.github.io/material-design-icons/)
 
 - GitHub: [material-design-icons](https://github.com/google/material-design-icons)
 - [Material Design icons](https://material.io/tools/icons)
 
-样式统一，无商标图标。谷歌出品，因国内行情，加载未必稳定。
+样式统一，无商标图标。谷歌出品，因国内行情，加载未必稳定，你可以寻找一些镜像源替代。
+
+主题同样进行了适配。
+
+::: tip 为何需要适配？
+
+原本的使用方式
+
+`face` 为 `<i></i>` 内部内容，而非 `class`。
 
 ```html
 <i class="material-icons">face</i>
 ```
 
-如使用 `ionicon`，图标相关配置中请如下填写：`material-icons face`。
+:::
+
+引入对应 CDN 资源：
+
+```yml
+head:
+  css:
+    material: https://fonts.googleapis.com/icon?family=Material+Icons
+```
+
+```yml
+icon: material-icons face
+```
 
 ### 其他图标
 
-与上述几种图标使用方式类似，图标相关配置中填写对应图标 `class` 即可。
+在 [`head`](#head-头部资源) 中引入相关资源，图标相关配置 `icon` 中填写对应图标 `class` 即可。
+
+譬如常见的 [Font-Awesome](https://fontawesome.com)
+
+> GitHub: [Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
+
+引入它的 CSS 资源：
+
+```yml
+head:
+  css:
+    fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
+```
+
+对应 `icon` 字段中填写对应 `class` 名称即可。
+
+```yml
+icon: fas fa-home
+```
+
+> 其实并不推荐引入全部的 `font-awesome`，因为它真的很大。
 
 ## 社交图标
 
@@ -344,12 +398,14 @@ head:
 - `icon`: 图标 Class
 - `color`: 图标颜色（前提是您引入的图标支持 SVG 自定义颜色）当前默认色彩采用官方图标的品牌主色。
 
+> 如果你想使用 QQ 跳转链接，你可能还需要到 [QQ 推广](https://shang.qq.com/) 开通。
+
 ```yml
 social:
   - name: RSS
     # set rss in your root config
     # https://github.com/hexojs/hexo-generator-feed
-    link: atom.xml # config.feed.path
+    link: /atom.xml # config.feed.path
     icon: icon-rss-line
     color: orange
   - name: QQ
@@ -440,12 +496,22 @@ social:
 
 - `enable`: 是否开启
 - `title`: 设置文字内容
+- `cloud`: 在首页下方显示流动的云
+  - `enable`: 是否开启
+  - `ccolor`: 自定义色彩
+- `go_down`: 向下箭头按钮（点击翻页）
 
 ```yml
 banner:
   enable: true
   title: 云游君的小站
   src: /js/ui/banner.js
+  cloud:
+    enable: true
+    color: "white"
+  go_down:
+    enable: true
+    icon: icon-arrow-down-s-line
 ```
 
 ### 公告
@@ -463,7 +529,7 @@ notice:
 
 ### 字体
 
-你可以设置你的自定义字体，并调节为你喜欢的自重。
+你可以设置你的自定义字体，并调节为你喜欢的字重。
 
 :::tip
 如果你使用了非系统自带字体，你还需要前往 [head](#head-头部资源) 处引入。
@@ -485,21 +551,27 @@ head:
 > 你可以仅覆盖你想覆盖的字体族。
 
 - 衬线字体（Serif）：较粗表强调，通常用于首页标语（Banner）、Say、站点与文章标题（以及 links、girls 等页面的作品名称）等处。
-- 无衬线字体（Sans Serif）：较细以营造轻盈之感，通常为普通文本内容。
+- 无衬线字体（Sans Serif）：较细以营造轻盈之感，通常为普通文本内容。（如果你的字体显示较粗，可能是你在 Windows 系统上安装了 `PingFang SC` 字体，却没有安装对应字重。）
 - 等宽字体（monospace）：字符均具有相同宽度，通常用于需要相同宽度以对齐之处（如日期、序号）。
+
+将 `font.cdn.enable` 设置为 `false` 以全部使用系统默认字体，达到最佳访问速度。（默认开启时，使用 `media="none" onload="this.media='all'"` 实现 css 样式的异步加载。）
 
 > 代码处的等宽字体始终使用 prism.css 设置的字体 `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`。
 
 ```yml
 font:
+  cdn:
+    enable: true
+    lib:
+      - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=Source+Code+Pro&display=swap
   serif:
-    family: "'Noto Serif SC', 'Songti SC', STKaiti, KaiTi, Roboto, serif"
-    weight: 300
-  sans_serif:
-    family: "Lato, 'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif"
+    family: "'Songti SC', 'Noto Serif SC', STZhongsong, STKaiti, KaiTi, Roboto, serif"
     weight: 900
+  sans_serif:
+    family: "'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif"
+    weight: 300
   monospace:
-    family: "'Courier New', Courier, Consolas, Monaco, monospace"
+    family: "'Source Code Pro', 'Courier New', Courier, Consolas, Monaco, monospace"
 ```
 
 ### 图片背景
@@ -659,13 +731,13 @@ menu:
     path: /
     icon: icon-home-4-line
   archives:
-    path: /archives
+    path: /archives/
     icon: icon-archive-line
   tags:
-    path: /tags
+    path: /tags/
     icon: icon-price-tag-3-line
   categories:
-    path: /categories
+    path: /categories/
     icon: icon-folder-2-line
   custom:
     title: 文档
@@ -809,14 +881,34 @@ Hexo 主题 Yun
 
 你可以在文章头部添加 `hide` 属性，来临时隐藏某篇文章。
 
-```md
+- `hide`:
+  - `index`: 设置为 `index` 时，将只在首页隐藏，归档中仍然展示。（譬如放一些没有必要放在首页的笔记，并在归档中方便自己查看。）
+  - `true`: 当设置为 `true` 时，该文章仍然会被渲染，你自己可以直接访问链接进行查看。但不会被显示在展示的文章卡片与归档中。
+
+> 什么你想完全不渲染不显示，那你为何不将其放在 `_drafts` 文件夹下，或干脆不提交这篇文章。
+
+```yml {3}
 ---
 title: xxx
 hide: true
+# hide: index
+sitemap: false
+indexing: false
 ---
+
 ```
 
-该文章仍然会被渲染，你自己可以直接访问链接进行查看。但不会被显示在展示的文章卡片中。
+::: tip
+
+如果你开启了站点地图，那它还会出现在 `sitemap.xml` 中，你还需要在 front matter 处设置 `sitemap: false` 来排除它。
+
+> [excluding-posts | hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap#excluding-posts)
+
+如果你开启了本地搜索，那它还会出现在 `search.xml` 中，你还需要设置 `indexing: false` 来排除它。
+
+> [exclude-indexing | hexo-generator-search](https://github.com/wzpan/hexo-generator-search#exclude-indexing)
+
+:::
 
 > 题外话，这个功能是我当初应付备案临时加的。
 > 我更改备案信息时，客服通知我首页不能用跳转其他页面链接的内容（有一个和文章混在一起直接跳转 bilibili 的卡片），所以我就加了这个功能临时隐藏掉了。
@@ -1061,7 +1153,7 @@ footer:
 
 自豪地显示当前使用的博客框架 Hexo 与主题 Yun 的名字及版本。
 
-如：`由 Hexo 驱动 v4.2.0 | 主题 - Yun v0.0.2`。
+如：`由 Hexo 驱动 v4.2.0 | 主题 - Yun v0.6.1`。
 
 让更多人知道 Hexo 与主题 Yun，这有利于开源社区进一步发展。
 

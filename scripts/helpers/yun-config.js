@@ -1,4 +1,4 @@
-hexo.extend.helper.register("yun_config", function () {
+hexo.extend.helper.register("yun_config", function() {
   let { config, theme, yun_version, __ } = this;
   let exportConfig = {
     root: config.root,
@@ -45,50 +45,9 @@ hexo.extend.helper.register("yun_config", function () {
 
   // local search
   if (theme.local_search.enable) {
-    let search_path = config.search.path;
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    }
+    let search_path = config.search.path || "search.xml";
     exportConfig.local_search = {
       path: config.root + search_path,
-    };
-  }
-
-  // valine
-  if (theme.valine.enable) {
-    let valine_lang = theme.valine.lang || config.language || "zh-cn";
-    let GUEST_INFO = ["nick", "mail", "link"];
-    let meta = theme.valine.meta;
-    meta = meta.split(",").filter(function (item) {
-      return GUEST_INFO.indexOf(item) > -1;
-    });
-    exportConfig.valine = {
-      el: "#valine-container",
-      verify: theme.valine.verify,
-      notify: theme.valine.notify,
-      appId: theme.valine.appId,
-      appKey: theme.valine.appKey,
-      serverURLs: theme.valine.serverURLs,
-      placeholder: theme.valine.placeholder,
-      avatar: theme.valine.avatar,
-      meta: meta,
-      pageSize: theme.valine.pageSize,
-      lang: valine_lang.toLowerCase(),
-      visitor: theme.valine.visitor,
-    };
-  }
-
-  // minivaline
-  if (theme.minivaline.enable) {
-    exportConfig.minivaline = {
-      el: '#minivaline-container',
-      appId: theme.minivaline.appId,
-      appKey: theme.minivaline.appKey,
-      placeholder: theme.minivaline.placeholder,
-      lang: theme.minivaline.lang,
-      adminEmailMd5: theme.minivaline.adminEmailMd5,
-      math: theme.minivaline.math,
-      md: theme.minivaline.md
     };
   }
 
@@ -98,7 +57,37 @@ hexo.extend.helper.register("yun_config", function () {
     };
   }
   return `<script id="yun-config">
-    let Yun = window.Yun || {};
-    let CONFIG = ${JSON.stringify(exportConfig)};
+    window.CONFIG = ${JSON.stringify(exportConfig)};
   </script>`;
+});
+
+hexo.extend.helper.register("minivaline_config", function() {
+  const minivalineConfig = {
+    el: "#minivaline-container",
+    appId: theme.minivaline.appId,
+    appKey: theme.minivaline.appKey,
+    placeholder: theme.minivaline.placeholder,
+    lang: theme.minivaline.lang,
+    adminEmailMd5: theme.minivaline.adminEmailMd5,
+    math: theme.minivaline.math,
+    md: theme.minivaline.md,
+  };
+  return JSON.stringify(minivalineConfig);
+});
+
+hexo.extend.helper.register("wordcloud_config", function() {
+  let { config, theme } = this;
+  const wordcloud_config = {};
+  let list = [];
+  const tags = hexo.locals.get("tags");
+  tags.forEach((tag) => {
+    list.push([tag.name, tag.length / 10 + 1, config.root + tag.path]);
+  });
+  wordcloud_config.list = list;
+  wordcloud_config.fontFamily = theme.font.serif.family;
+  wordcloud_config.fontWeight = theme.font.serif.weight;
+  wordcloud_config.gridSize = 10;
+  wordcloud_config.weightFactor = 13;
+  wordcloud_config.backgroundColor = "transparent";
+  return wordcloud_config;
 });

@@ -16,6 +16,30 @@ It is best not to modify any of the theme's files unless you have certain develo
 
 The default language is Chinese `zh-CN`.
 
+### Customized Language
+
+Create a new `source/_data/language.yml` in the Hexo working directory. (If the `source/_data` directory does not exist, please create a new one.)
+
+With the convention greater than the configuration, you only need to customize the paragraph or words you want to override in `language.yml` , and the rest will be automatically merged with the theme's default configuration. (This is also more convenient for future upgrades)
+
+Here follows a configuration example,
+
+```yml
+en: # the language need to be overridden
+  menu:
+    home: My Index
+
+ja: # the language need to be overridden
+  menu:
+    home: マイインデックス
+
+zh-CN: # the language need to be overridden
+  menu:
+    home: 我的主页
+```
+
+If english is the only used language, all items can be erased other than `en`.
+
 ## Theme Color
 
 The main color of the custom theme.
@@ -41,7 +65,7 @@ You can specify the color for your label, the default color is `#333`.
 ```yml
 tags:
   Vue: "#4fc08d"
-  Hexo: "0E834D"
+  Hexo: "#0E834D"
   CSS: "#5298d1"
   Node.js: "#026E00"
   Git: "#F14E32"
@@ -195,18 +219,23 @@ CDN can be added at `head`.
 
 ```yml
 preload:
-  style: -/css/hexo-theme-yun.css
-  script: -/js/utils.js
-    -/js/hexo-theme-yun.js
+  style:
+    - /css/hexo-theme-yun.css
+  script:
+    - /js/hexo-theme-yun.js
 
 prefetch:
-  style: -/css/prism.css
-  script: -/js/sidebar.js
+  style:
+    - /css/prism.css
+  script:
+    - /js/sidebar.js
 
-dns_prefetch: -https://cos.yunyoujun.cn
+dns_prefetch:
+  - https://cos.yunyoujun.cn
 
 # do more (TCP handshake ...) than dns-fetch
-preconnect: -https://cdn.jsdelivr.net
+preconnect:
+  - https://cdn.jsdelivr.net
 ```
 
 ## Icon
@@ -718,6 +747,7 @@ You can add a `hide` attribute at the head of the article to temporarily hide an
 ---
 title: xxx
 hide: true
+# hide: index
 ---
 ```
 

@@ -177,9 +177,13 @@ tag_cloud:
 
 ## 播放器
 
-### [hexo-tag-aplayer](https://github.com/MoePlayer/hexo-tag-aplayer)
+安装 [hexo-tag-aplayer](https://github.com/MoePlayer/hexo-tag-aplayer)
 
-> 可参见[官方文档](https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md)就好了。
+```sh
+npm install hexo-tag-aplayer
+```
+
+> 可参见[官方文档](https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md)。
 
 推荐的配置（在 Hexo 的根目录下的 `_config.yml` 中）：
 
@@ -211,20 +215,54 @@ aplayer: true
 
 ```
 
-你也可以在 `yun.yml` 中设置全局开启。（当你设置了全局的播放器时，可以使用它。）
-
-```yml
-aplayer:
-  global: true
-  meting: true
-```
-
 :::
 
 插入某首网易云音乐的歌
 
 ```md
-{% meting "497572729" "netease" "song" "theme:#C20C0C"%}
+{% meting "497572729" "netease" "song" "theme:#C20C0C" %}
+```
+
+### 全局音乐播放器
+
+你也可以在 `yun.yml` 中设置全局开启。（当你设置了全局的播放器时，可以使用它。）
+
+- `meting`: 是否开启 [meting](https://github.com/metowolf/MetingJS)，注意与 `widget` 下的 `meting` 相区分
+- `widget`: 你可以将 `widget.enable` 设置为 `true` 来打开全局播放器。（`aplayer.global` 必须为 `true`）
+  - `meting`: 此处的 `meting` 控制是否打开全局播放器的 meting。打开时，将加载 `option`；关闭时，将使用自定义的 `audio`。
+  - `audio`: 给出了加载自定义音乐的默认参考配置，更多请参见 [官方文档](https://aplayer.js.org/#/home)。
+  - `option`: 参考 [Option | MetingJS](https://github.com/metowolf/MetingJS/tree/v1.2#option)
+
+开启 [pjax](#pjax)，可以实现切换页面时，不中断音乐播放器。（为了正确加载音乐播放器，当切换到的文章页面也存在音乐播放器时，`Meting` 会重新加载。）
+
+```yml
+aplayer:
+  global: true
+  meting: true
+  # https://github.com/metowolf/MetingJS/tree/v1.2#option
+  widget:
+    enable: true
+    meting: true
+    audio:
+      - name: 星宿计时
+        artist: 杉田朗/洛天依
+        url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/audio/star-timer.mp3
+        cover: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0.jpg
+    option:
+      id: 308168565
+      server: netease
+      type: playlist
+      autoplay: false
+      # theme: "#2980b9"
+      loop: all
+      order: list
+      preload: auto
+      volume: 0.7
+      mutex: true
+      lrctype: 0
+      listfolded: false
+      listmaxheight: 340px
+      storagename: metingjs
 ```
 
 由于 `hexo-tag-aplayer` 太香了，我决定移除原先的媒体包裹脚本。实在有需要的同学，可以自行外挂添加。
@@ -329,3 +367,20 @@ $$ E = mc^2 $$
 ### [hexo-blog-encrypt](https://github.com/MikeCoder/hexo-blog-encrypt)
 
 你可以使用它来加密一些私密的文章页面。
+
+## pjax
+
+使用 [pjax](https://github.com/MoOx/pjax) 实现。
+
+> 正处在开发……
+
+```yml
+pjax:
+  enable: true
+```
+
+- [ ] pjax 适配
+  - [x] Valine
+  - [x] TOC
+  - [x] aplayer
+  - [ ] gallery

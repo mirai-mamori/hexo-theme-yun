@@ -1,8 +1,9 @@
 #comment
   .comment-tooltip.text-center
-    each tip in theme.comment.tips
-      span!=tip
-      br
+    if theme.comment.tips
+      each tip in theme.comment.tips
+        span!=tip
+        br
     if theme.github_issues.enable
       include github-issues.pug
 
@@ -10,3 +11,7 @@
     include valine.pug
   if theme.minivaline && theme.minivaline.enable
     include minivaline.pug
+  if theme.disqus && theme.disqus.enable
+    include disqus.pug
+  if theme.disqusjs && theme.disqusjs.enable
+    include disqusjs.pug

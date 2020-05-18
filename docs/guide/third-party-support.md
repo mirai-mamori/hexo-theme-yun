@@ -56,6 +56,39 @@ github_issues:
 
 > 如果您实在觉得 Gitalk 有必要使用，可以在 Issue 里提出有力的理由来说服我或自行添加。
 
+### [Disqus](https://disqus.com/)
+
+Disqus 可以说是全球最流行的第三方评论系统，但其在国内缺点也很明显，需要科学上网。
+
+- `shortname`: 修改为你的用户名
+- `count`: 是否开启评论数统计（将会显示在文章的评论数）
+
+```yml
+disqus:
+  enable: true
+  shortname: yunyoujun
+  count: false
+```
+
+#### [DisqusJS](https://github.com/SukkaW/DisqusJS)
+
+> 纯前端、超轻量级的「评论基础模式」实现：使用 Disqus API 渲染评论列表
+
+相比原生集成的 Disqus，解决的痛点就是在需要科学上网的地方，可以通过 Disqus API 渲染出一份基础的评论列表。
+让无法科学上网的用户可以直接看到评论。
+
+> 当然，想要真正评论，你仍然需要科学上网。
+
+- `apikey`: 必须，请参考 DisqusJS 文档 [配置 Disqus Application](https://github.com/SukkaW/DisqusJS#%E9%85%8D%E7%BD%AE-disqus-application)
+
+```yml
+disqusjs:
+  enable: false
+  shortname: yunyoujun
+  count: false
+  apikey:
+```
+
 ### Valine
 
 参见 [Valine](https://valine.js.org) 官方文档进行配置。语言默认跟随 Hexo 的语言设置。
@@ -71,25 +104,41 @@ language: zh-CN
 > [快速开始 - 获取 APP ID 和 APP Key](https://valine.js.org/quickstart.html#%E8%8E%B7%E5%8F%96APP-ID-%E5%92%8C-APP-Key)
 
 - `visitor`: 文章阅读量统计（请最好不要与 [不蒜子](#busuanzi) 同时启用）
-- `visitor_index`: 是否开启站点主页访问量统计（主题额外添加的配置项，默认关闭）
+
+> [更多配置项](https://valine.js.org/configuration.html)
 
 ```yml
 valine:
   enable: false
   appId: # your leancloud application appid
   appKey: # your leancloud application appkey
-  serverURLs:
-  notify: false # mail notifier, See: https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
   placeholder: Just go go # comment box placeholder
   avatar: # gravatar style
-  meta: nick,mail,link # custom comment header
+  meta:
+    - nick
+    - mail
+    - link
   pageSize: 10 # pagination size
-  visitor: true
+  # lang: zh-CN
+  # visitor: false
   visitor_index: false
+  # highlight: true
+  # recordIP: false
+  # serverURLs:
+  # Emoji See: https://valine.js.org/emoji.html
+  # emojiCDN: //i0.hdslb.com/bfs/emote/
+  # emojiMaps:
+  #   tv_doge: 6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png
+  #   more...
+  # enableQQ: false
+  # requiredFields:
+  #   - nick
+  #   - mail
 ```
 
 Valine 的扩展和增强功能可以参考 [Valine-Admin](https://github.com/DesertsP/Valine-Admin)，可以对具体的评论进行邮件提醒。
+
+> pjax: [请问如何在带有 pjax 的页面下使用 - Issue #138](https://github.com/xCss/Valine/issues/138)
 
 ### MiniValine
 
@@ -209,9 +258,9 @@ google_analytics:
 
 不蒜子是一款轻量极简的网站计数器。
 
-前往[不蒜子](http://busuanzi.ibruce.info/) 查看相关信息。
+前往[不蒜子](https://busuanzi.ibruce.info/) 查看相关信息。
 
-使用说明：<http://ibruce.info/2015/04/04/busuanzi>
+使用说明：<https://ibruce.info/2015/04/04/busuanzi>
 
 > 请最后不要与 [Valine](#valine) 的 `visitor` 同时启用。
 
