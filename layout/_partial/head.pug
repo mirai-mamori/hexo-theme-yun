@@ -1,8 +1,9 @@
 - var favicon = config.favicon || theme.favicon || '/favicon.ico'
 //- favicon
-link(rel='shortcut icon', href=url_for(favicon))
+link(rel='shortcut icon' type="image/svg+xml" href=url_for(favicon))
 //- Safari
 link(rel="mask-icon" href=url_for(favicon), color=theme.colors.primary)
+link(rel="alternate icon" href="/yun.ico")
 
 //- not use cdn.pre in dev
 if process.env.NODE_ENV === 'dev'
@@ -60,3 +61,23 @@ if theme.head.js.async
 if theme.head.js.defer
   each item in theme.head.js.defer
     script(src=url_for(item), defer)
+
+include ../_third-party/index.pug
+
+//- open graph
+//- to avoid conflict
+if page.photos
+  - var page_photos = page.photos
+  - page.photos = page_photos.map(photo=>{return photo.src})
+
+!=open_graph()
+
+if page.photos
+  - page.photos = page_photos
+
+if theme.mode !== 'light'
+  script(src=url_for('/js/ui/mode.js'))
+
+//- no-referer
+if page.type === 'albums' || page.layout === 'gallery'
+  meta(name="referrer" content="no-referrer")

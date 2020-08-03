@@ -57,25 +57,13 @@ hexo.extend.helper.register("yun_config", function() {
     };
   }
   return `<script id="yun-config">
+    const Yun = window.Yun || {};
     window.CONFIG = ${JSON.stringify(exportConfig)};
   </script>`;
 });
 
-hexo.extend.helper.register("minivaline_config", function() {
-  const minivalineConfig = {
-    el: "#minivaline-container",
-    appId: theme.minivaline.appId,
-    appKey: theme.minivaline.appKey,
-    placeholder: theme.minivaline.placeholder,
-    lang: theme.minivaline.lang,
-    adminEmailMd5: theme.minivaline.adminEmailMd5,
-    math: theme.minivaline.math,
-    md: theme.minivaline.md,
-  };
-  return JSON.stringify(minivalineConfig);
-});
-
-hexo.extend.helper.register("wordcloud_config", function() {
+// wordcloud
+hexo.extend.helper.register("wordcloud_config", function(color) {
   let { config, theme } = this;
   const wordcloud_config = {};
   let list = [];
@@ -84,10 +72,11 @@ hexo.extend.helper.register("wordcloud_config", function() {
     list.push([tag.name, tag.length / 10 + 1, config.root + tag.path]);
   });
   wordcloud_config.list = list;
-  wordcloud_config.fontFamily = theme.font.serif.family;
-  wordcloud_config.fontWeight = theme.font.serif.weight;
+  wordcloud_config.fontFamily = theme.font.sans_serif.family;
+  wordcloud_config.fontWeight = theme.font.sans_serif.weight;
   wordcloud_config.gridSize = 10;
   wordcloud_config.weightFactor = 13;
   wordcloud_config.backgroundColor = "transparent";
+  wordcloud_config.color = color;
   return wordcloud_config;
 });

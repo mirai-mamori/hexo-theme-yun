@@ -59,7 +59,7 @@ description: xxxxxxx
 
 譬如：
 
-```yml {3}
+```yaml {3}
 ---
 title: xxx
 icon: icon-women-line
@@ -81,7 +81,7 @@ hexo new page tags
 
 修改 `source/tags/index.md` 的 `Front Matter`
 
-```yml {4}
+```yaml {4}
 ---
 date: 2017-10-09 19:11:58
 comments: false
@@ -92,7 +92,7 @@ type: tags
 
 你可以在 `yun.yml` 中设置：
 
-```yml
+```yaml
 wordcloud:
   enable: true
 ```
@@ -113,7 +113,7 @@ hexo new page categories
 
 修改 `source/categories/index.md` 的 `Front Matter`
 
-```yml {4}
+```yaml {4}
 ---
 date: 2017-10-12 10:47:16
 comments: false
@@ -194,7 +194,7 @@ hexo new page links
 
 - `tip`: 友链未加载成功时的文字提示，加载完后会被移除。（仅当通过 JSON 加载友链时生效。）
 
-```yml {2}
+```yaml {2}
 ---
 layout: links
 title: 我的小伙伴们
@@ -229,7 +229,7 @@ tip: 友链加载中～如失败请刷新重试～
 
 - `random`: 随机友链顺序，默认未开启
 
-```yml {8-9}
+```yaml {8-9}
 ---
 layout: links
 title: 我的小伙伴们
@@ -256,7 +256,7 @@ random: true
 
 > 当关闭时，该页面的 CSS 文件也不会被打包进最后的 CSS 文件。所以不用担心本主题该功能会影响加载速度。
 
-```yml
+```yaml
 girls:
   enable: true
 ```
@@ -267,7 +267,7 @@ hexo new page girls
 
 进入 `source/girls/index.md`
 
-```yml {2}
+```yaml {2}
 ---
 layout: girls
 title: 可爱的女孩子
@@ -294,7 +294,7 @@ girls:
 
 在 `yun.yml` 中开启相册功能。
 
-```yml
+```yaml
 albums:
   enable: true
 ```
@@ -322,7 +322,7 @@ hexo new page albums
 - `cover`: 相册封面
 - `desc`: 相册描述
 
-```yml {2}
+```yaml {2}
 ---
 type: albums
 albums:
@@ -366,9 +366,11 @@ hexo new page --path albums/sunset "夕阳"
 测试页面：<https://www.yunyoujun.cn/albums/sunset.html>
 测试密码：test
 
+> 如果你发现在 `hexo s` 并开启了 PJAX 时，无法正常解密相册，不用担心，这是 Hexo 作为服务器时，对链接又重新加密了一遍，生成静态文件部署时是没有问题的。
+
 :::
 
-```yml {5}
+```yaml {5}
 ---
 title: 夕阳
 date: 2020-04-18 16:27:24
@@ -388,3 +390,76 @@ photos:
 
 > 为什么使用相册集作为 `albums`，`gallery` 作为相册 ？
 > [What is the Difference Between Albums vs Galleries in WordPress](https://enviragallery.com/what-is-the-difference-between-albums-vs-galleries-in-wordpress/)
+
+## Slides 幻灯片
+
+> 使用 [reveal.js](https://revealjs.com/) 实现，更多信息请参见[文档](https://revealjs.com/markdown/)。
+
+你可以使用 Markdown 混合 Html 来快速编写你的幻灯片。
+
+`source` 下新建 `slides/test.md`。
+
+或者命令：
+
+```sh
+hexo new page --path slides/test "测试 Slides"
+```
+
+进入 `test.md`，修改头部如下（遵循对应语法即可开始编辑你的 Slides 文件）
+
+```yaml
+---
+title: Color Dust
+date: 2020-06-23 16:27:24
+updated: 2020-06-23 16:27:24
+layout: slide
+slide:
+  theme: white
+  config:
+    history: true
+    mouseWheel: true
+---
+
+```
+
+接着直接在下方用 Markdown 开始编写你的 Slides 文件吧。
+
+```md
+## Slide 1
+
+## A paragraph with some text and a [link](http://hakim.se).
+
+## Slide 2
+
+---
+
+## Slide 3
+```
+
+我的一个 Slides 示例:
+
+- [color-dust.md](https://github.com/YunYouJun/yunyoujun.github.io/blob/hexo/source/slides/color-dust.md)
+- [预览](https://www.yunyoujun.cn/slides/color-dust.html#/)
+
+### 通用配置
+
+默认水平分页分隔符为 `---`，垂直分页分隔符为 `~~`，笔记开始关键字为 `Note:`。
+
+> 按 <kbd>S</kbd> 开启演讲者模式。
+
+主题为 `white`，[更多主题名称](https://revealjs.com/themes/)。
+
+`config` 对应[更多配置](https://revealjs.com/config/)。
+
+```yaml
+slide:
+  separator: ---
+  separator_vertical: "~~"
+  data_separator_notes: "^Note:"
+  theme: white
+  config:
+    history: true
+    mouseWheel: false
+```
+
+> 至于想要 Slides 的列表嘛，自己建个 `source/slides/index.md` 在里面列吧。

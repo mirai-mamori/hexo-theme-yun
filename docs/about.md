@@ -22,7 +22,7 @@
 - 文档！（我觉得像咱这样有详细文档的主题还真不多，膨胀）
 - 自定义程度高，且方便按需配置（约定大于配置）
 - 小且速度快（无 jQuery 依赖，尽可能使用 CDN 与最新的 API）
-- 因为还没什么人用，所以基本不用担心撞衫！
+- ~~因为还没什么人用，所以基本不用担心撞衫！~~
 - 一些奇怪的功能（譬如生成老婆名单？）
 
 > 我发现许多 Hexo 主题都引入了 jQuery 以方便开发。
@@ -58,10 +58,10 @@
 
 ### 色彩
 
-采用亮色模式
+优先采用亮色模式
 
 此前，我始终在亮色与暗色的选择之间徘徊，那么不如做一个可以切换亮暗的主题。
-这也意味着工作量会增加，需要更多的考虑和测试，便优先亮色调的开发。
+这也意味着工作量会增加，需要更多的考虑和测试，便优先亮色调的开发。（现在暗色模式也有啦，个人还是喜欢亮的。）
 
 > 一些早在 20 世纪 80 年代的科学研究表明：对于大多数用户来说，亮色背景文本的大量使用似乎是一种更有效的选择。  
 > D.Bauer 和 C.R.Cavonius 在其研究广告载体是如何运行的论文中分享了他们的研究成果《通过对比反转，提高视觉显示元素的易读性》（1980）。特别是，他们发现：当阅读文本时，参与者在浏览亮色背景上带有的深色文字时，准确率提高了 26%。  
@@ -82,6 +82,9 @@
 - [RemixIcon](https://github.com/Remix-Design/remixicon)
 - [iconfont](https://www.iconfont.cn/)
 - [lightgallery.js](https://github.com/sachinchoolur/lightgallery.js/)
+- [VuePress](https://github.com/vuejs/vuepress)
+- [KaTeX](https://github.com/KaTeX/KaTeX)
+- [Pjax](https://github.com/MoOx/pjax)
 
 ### Theme
 

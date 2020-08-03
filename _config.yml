@@ -1,16 +1,19 @@
 # ---------------
-# Todo: mode: light | dark | auto
-mode: light # now only light
+# mode: light | dark | auto
+mode: light
 
 # Theme color for customize
 # Notice: color value must in double quotes: "#000000"
 colors:
   primary: "#0078E7"
   # primary: "#6200ee"
-  # bg: "#EEEEEE"
+  bg: "#f5f5f5"
   selection_bg: "#8e71c1"
-  # tag_start_color:
-  # tag_end_color:
+  tag_start_color: "#999999"
+  tag_end_color: "#0078E7"
+  dark:
+    block: "#1b1f2e"
+    # block: "#17202A"
 
 # Favicon
 # ---------------
@@ -25,12 +28,16 @@ sidebar:
   src: /js/sidebar.js
   bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-1.jpg
   bg_position: bottom 1rem center
+  tagcloud:
+    enable: false
+    amount: 20
 
 toc:
   list_number: true
   max_depth: 6
   min_depth: 1
   # placeholder: 很遗憾，咱没写啥目录
+  collapse: true
 
 # Social Links.
 social:
@@ -40,19 +47,15 @@ social:
     link: /atom.xml # config.feed.path
     icon: icon-rss-line
     color: orange
-  - name: QQ
+  - name: QQ 群
     # https://isux.tencent.com/wp-content/uploads/2016/05/20160512101222609.pdf
-    link: https://wpa.qq.com/msgrd?v=3&uin=910426929&site=qq&menu=yes
+    link: https://shang.qq.com/wpa/qunwpa?idkey=c929e704022704d8cced9ec355d44a3fa7ad34aea12cef1de03d75d3d7d5b059
     icon: icon-qq-line
     color: "#12B7F5"
   - name: GitHub
     link: https://github.com/YunYouJun
     icon: icon-github-line
-    color: "#181717"
-  - name: E-Mail
-    link: mailto:me@yunyoujun.cn
-    icon: icon-mail-line
-    color: "#8E71C1"
+    color: "#6e5494"
   - name: 微博
     link: https://weibo.com/jizhideyunyoujun
     icon: icon-weibo-line
@@ -91,8 +94,13 @@ social:
   #   color: "#0088CC"
   - name: Telegram Channel
     link: https://t.me/elpsycn
-    icon: icon-telegram-fill
+    # icon: icon-telegram-fill
+    icon: icon-telegram-line
     color: "#0088CC"
+  - name: E-Mail
+    link: mailto:me@yunyoujun.cn
+    icon: icon-mail-line
+    color: "#8E71C1"
   - name: Travelling
     link: https://travellings.now.sh/
     icon: icon-send-plane-2-line
@@ -133,15 +141,16 @@ menu:
   home:
     path: /
     icon: icon-home-4-line
-  archives:
-    path: /archives/
-    icon: icon-archive-line
-  tags:
-    path: /tags/
-    icon: icon-price-tag-3-line
-  categories:
-    path: /categories/
-    icon: icon-folder-2-line
+  list:
+    - type: archives
+      path: /archives/
+      icon: icon-archive-line
+    - type: categories
+      path: /categories/
+      icon: icon-folder-2-line
+    - type: tags
+      path: /tags/
+      icon: icon-price-tag-3-line
   custom:
     title: 文档
     path: https://yun.yunyoujun.cn
@@ -151,14 +160,9 @@ menu:
 archive:
   last_word: 没有更多的黑历史了_(:з」∠)_
 
-# https://github.com/MikeCoder/hexo-tag-cloud
-tag_cloud:
-  enable: false
-  width: 300
-  height: 300
-
 wordcloud:
   enable: false
+  height: 350
 
 # You can set color for every tag or category.
 tags:
@@ -180,6 +184,9 @@ categories:
 
 # post type
 types:
+  link:
+    color: blue
+    icon: icon-external-link-line
   bilibili:
     color: "#FF8EB3"
     icon: icon-bilibili-line
@@ -192,6 +199,9 @@ types:
   netease-cloud-music:
     color: "#C10D0C"
     icon: icon-netease-cloud-music-line
+  notion:
+    color: black
+    icon: icon-notion
   wechat:
     color: "#1AAD19"
     icon: icon-wechat-2-line
@@ -204,9 +214,6 @@ types:
   zhihu:
     color: "#0084FF"
     icon: icon-zhihu-line
-  link:
-    color: blue
-    icon: icon-external-link-line
 
 # post_card
 post_card:
@@ -218,11 +225,10 @@ preload:
   style:
     - /css/hexo-theme-yun.css
   script:
+    - /js/utils.js
     - /js/hexo-theme-yun.js
 
 prefetch:
-  # style:
-  #   - /css/prism.css
   script:
     - /js/sidebar.js
 
@@ -248,6 +254,7 @@ css:
 
 # scripts loaded in the end of the body
 js:
+  - /js/utils.js
   - /js/hexo-theme-yun.js
 
 # custom your assets in head
@@ -263,17 +270,14 @@ cdn:
   pre: ""
   # pre: https://cdn.jsdelivr.net/gh/YunYouJun/yunyoujun.github.io
   css:
-  # Todo:
-  # icon
-  # material-design-icons: https://fonts.googleapis.com/icon?family=Material+Icons+Outlined
-  # markdown
-  # github-markdown-css: https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css
-  # star-markdown-css: https://cdn.jsdelivr.net/npm/star-markdown-css/dist/planet/planet-markdown.min.css
-  # blood-markdown-css: https://cdn.jsdelivr.net/npm/star-markdown-css/dist/blood/blood-common.min.css
+    yun-markdown-css: https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.16/dist/yun/yun-markdown.min.css
+    # github-markdown-css: https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.css
+    # planet-markdown-css: https://cdn.jsdelivr.net/npm/star-markdown-css/dist/planet/planet-markdown.min.css
+    # blood-markdown-css: https://cdn.jsdelivr.net/npm/star-markdown-css/dist/blood/blood-common.min.css
   js:
     base:
     async:
-      iconfont: //at.alicdn.com/t/font_1140697_4i778vmn3jg.js
+      iconfont: //at.alicdn.com/t/font_1140697_stqaphw3j4.js
     defer:
 
 # cdn for third-party library (alternative include)
@@ -283,6 +287,9 @@ vendors:
   anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js
   valine_js: https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js
   minivaline_js: https://cdn.jsdelivr.net/npm/minivaline/dist/MiniValine.min.js
+  gitalk:
+    css: https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.css
+    js: https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js
   scrollreveal: https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js
   katex:
     js: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js
@@ -295,7 +302,7 @@ vendors:
     css: https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css
     js: https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js
     meting: https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js
-  trianglify: https://cdn.jsdelivr.net/npm/trianglify@latest/dist/trianglify.min.js
+  trianglify: https://cdn.jsdelivr.net/npm/trianglify@4/dist/trianglify.bundle.js
   lightgallery:
     css: https://cdn.jsdelivr.net/npm/lightgallery.js@latest/dist/css/lightgallery.min.css
     js: https://cdn.jsdelivr.net/npm/lightgallery.js@latest/dist/js/lightgallery.min.js
@@ -307,12 +314,22 @@ vendors:
   disqusjs:
     css: https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css
     js: https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js
+  revealjs:
+    css: https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css
+    js: https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js
+    plugin:
+      markdown: https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js
+      notes: https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js
+      highlight:
+        js: https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/highlight.js
+        monokai: https://cdn.jsdelivr.net/npm/reveal.js@4.0.2/plugin/highlight/monokai.css
 
 # UI
 banner:
   enable: true
   title: 云游君的小站
   src: /js/ui/banner.js
+  border: true
   cloud:
     enable: true
     color: "white"
@@ -325,13 +342,13 @@ font:
   cdn:
     enable: true
     lib:
-      - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&family=Source+Code+Pro&display=swap
+      - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap
   serif:
     family: "'Songti SC', 'Noto Serif SC', STZhongsong, STKaiti, KaiTi, Roboto, serif"
     weight: 900
   sans_serif:
     family: "'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif"
-    weight: 300
+    weight: 400
   monospace:
     family: "'Source Code Pro', 'Courier New', Courier, Consolas, Monaco, monospace"
 
@@ -352,6 +369,7 @@ trianglify:
   cell_size: 75
   width: 800
   height: 600
+  # https://github.com/qrohlf/trianglify/blob/master/src/utils/colorbrewer.js
   palette: '["YlGnBu", "GnBu", "Purples", "Blues"]'
   opacity: 0.5
 
@@ -364,52 +382,57 @@ cursor:
 smoothScroll: true
 
 # You can see effect in https://scrollrevealjs.org/
-scrollreveal: true
+scrollreveal:
+  enable: true
+  targets:
+    - .post-card
+    - .post-content img
 
 bg_image:
   enable: true
   url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg # recomend image related to your mode
+  dark: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/galaxy.jpg
   # blur: 30px
-  opacity: 0.8
+  opacity: 1
 
 # Reward (Donate)
-reward_settings:
-  # If true, reward would be displayed in every posts and pages by default.
-  # You can show or hide reward in a specific page throuth `reward: true | false` in Front Matter.
+# If enable true, reward would be displayed in every posts and pages by default.
+# You can show or hide reward in a specific page throuth `reward: true | false` in Front Matter.
+reward:
   enable: true
   icon: icon-hand-coin-line
   comment: I'm so cute. Please give me money.
   # url: https://github.com/YunYouJun/yunyoujun.github.io/issues/96
-
-reward:
-  - name: 支付宝
-    path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg
-    color: "#00A3EE"
-    icon: icon-alipay-line
-  - name: QQ 支付
-    path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png
-    color: "#12B7F5"
-    icon: icon-qq-line
-  - name: 微信支付
-    path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg
-    color: "#2DC100"
-    icon: icon-wechat-pay-line
-  # - name: paypal
-  #   link: https://paypal.com
-  #   path: https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg
-  #   color: "#2D70B5"
-  #   icon: icon-paypal-line
+  methods:
+    - name: 支付宝
+      path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg
+      color: "#00A3EE"
+      icon: icon-alipay-line
+    - name: QQ 支付
+      path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png
+      color: "#12B7F5"
+      icon: icon-qq-line
+    - name: 微信支付
+      path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg
+      color: "#2DC100"
+      icon: icon-wechat-pay-line
+    # - name: paypal
+    #   link: https://paypal.com
+    #   path: https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg
+    #   color: "#2D70B5"
+    #   icon: icon-paypal-line
 
 # Creative Commons 4.0 International License.
 # https://creativecommons.org/licenses/
 # Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
 # You can set a language value if you prefer a translated version of CC license.
 # CC licenses are available in 39 languages, where you can find the specific and correct abbreviation you need.
-# Valid values of language: deed.zh, deed.fr, deed.de, etc.
+# Valid values of language: deed.zh, deed.en, deed.ja, etc.
 creative_commons:
   license: by-nc-sa
   language: deed.zh
   post: true
+  clipboard: false
 
 # AddThis Share, See: https://www.addthis.com
 # Go to https://www.addthis.com/dashboard to customize your tools.
@@ -542,18 +565,42 @@ valine:
 # More info available at https://github.com/MiniValine/MiniValine
 minivaline:
   enable: false
-  appId: # Your leancloud application appid
-  appKey: # Your leancloud application appkey
-  placeholder: Write a Comment # Comment box placeholder
-  adminEmailMd5: # The MD5 of Admin Email to show Admin Flag.
-  math: true # Support MathJax.
-  md: true # Support Markdown.
+  appId: # Your leancloud application appId
+  appKey: # Your leancloud application appKey
+  # mode: DesertsP # DesertsP or xCss # xCss Style mode needs to import fontawesome@5 https://github.com/YunYouJun/hexo-theme-yun/blob/dev/docs/guide/config.md#其他图标
+  # placeholder: Write a Comment # Comment box placeholder
+  # math: true # Support MathJax.
+  # md: true # Support Markdown.
+  # enableQQ: false # Enable QQ avatar API.
+  # NoRecordIP: false # Do not record commenter IP.
+  # visitor: true # Article reading statistics.
+  # maxNest: 6 # Sub-comment maximum nesting depth.
+  # pageSize: 6 # Pagination size.
+  # adminEmailMd5: de8a7aa53d07e6b6bceb45c64027763d # The MD5 of Admin Email to show Admin Flag.[Just Only DesertsP Style mode] 示例： Admin 邮箱的小写 MD5
+  # tagMeta: # The String Array of Words to show Flag.[Just Only xCss Style mode]
+  #   - 管理员 # 示例: master tag
+  #   - 小伙伴 # 示例: friends tag
+  #   - 访客   # 示例: 访客 tag
+  # master: # The MD5 String Array of master Email to show master Flag.[Just Only xCss Style mode]
+  #   - de8a7aa53d07e6b6bceb45c64027763d # 示例： master 邮箱的小写 MD5
+  # friends: # The MD5 String Array of friends Email to show friends Flag.[Just Only xCss Style mode]
+  #   - b5bd5d836c7a0091aa8473e79ed4c25e # 示例： friend 邮箱的小写 MD5
   # MiniValine's display language depends on user's browser or system environment
   # If you want everyone visiting your site to see a uniform language, you can set a force language value
   # Available values: en  | zh-CN | (and many more)
   # More i18n info: https://github.com/MiniValine/minivaline-i18n
-  lang:
+  # lang:
+  # Expression Url.
+  # https://github.com/MiniValine/MiniValine/blob/master/.github/FAQ.md#how-to-customize-emoticons
+  # emoticonUrl:
+  #   - https://cdn.jsdelivr.net/npm/alus@latest
+  #   - https://cdn.jsdelivr.net/gh/MiniValine/qq@latest
+  #   - https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@latest
+  #   - https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest
+  #   - https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest
+  #   - https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest
 
+# http://disqus.com/
 disqus:
   enable: false
   shortname: yunyoujun
@@ -566,6 +613,22 @@ disqusjs:
   count: false
   apikey:
 
+# https://livere.com/
+livere:
+  enable: false
+  uid:
+
+# https://gitalk.github.io/
+gitalk:
+  enable: false
+  clientID:
+  clientSecret:
+  repo:
+  owner:
+  admin:
+  id:
+  distractionFreeMode:
+
 # Show Views / Visitors of the website / page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi
 busuanzi:
@@ -577,17 +640,17 @@ busuanzi:
   page_pv: true
   page_pv_icon: icon-eye-line
 
-# Post wordcount display settings
-# Dependencies: https://github.com/theme-next/hexo-symbols-count-time
-symbols_count_time:
-  item_text_post: true
-  item_text_total: true
-  awl: 2
-  wpm: 275
+# Post wordcount
+# https://github.com/willin/hexo-wordcount
+wordcount:
+  enable: false
+  count: true
+  time: true
 
 # search
 search:
-  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-2.jpg
+  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
+  dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/mountain-blur-30px.jpg
   # placeholder: 想要搜些什么？
 
 engine_search:
@@ -622,6 +685,11 @@ google_analytics:
   enable: false
   id: UA-XXXXXXXXX-X
 
+# Google Tagmanager
+google_tagmanager:
+  enable: false
+  id:
+
 # math fomula
 # https://katex.org/
 katex:
@@ -635,27 +703,26 @@ aplayer:
   # https://github.com/metowolf/MetingJS/tree/v1.2#option
   widget:
     enable: false
-    meting: true
+    autoplay: false
+    # theme: "#2980b9"
+    loop: all
+    order: list
+    preload: auto
+    volume: 0.7
+    mutex: true
+    lrcType: 0
+    listFolded: false
+    listMaxHeight: 340px
     audio:
       - name: 星宿计时
         artist: 杉田朗/洛天依
         url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/audio/star-timer.mp3
         cover: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0.jpg
-    option:
+    meting:
+      enable: true
       id: 308168565
       server: netease
       type: playlist
-      autoplay: false
-      # theme: "#2980b9"
-      loop: all
-      order: list
-      preload: auto
-      volume: 0.7
-      mutex: true
-      lrctype: 0
-      listfolded: false
-      listmaxheight: 340px
-      storagename: metingjs
 
 # special
 mourn:
@@ -667,3 +734,17 @@ mourn:
 # SEO
 # https://ziyuan.baidu.com/linksubmit/index
 baidu_push: false
+
+# custom (You can use variables.)
+custom:
+  style: # source/_data/style/*
+
+# slide
+slide:
+  separator: ---
+  separator_vertical: "~~"
+  data_separator_notes: "^Note:"
+  theme: white
+  config:
+    history: true
+    mouseWheel: false

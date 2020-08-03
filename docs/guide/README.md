@@ -42,7 +42,7 @@ yarn add hexo-render-pug hexo-renderer-stylus
 
 进入您的 Hexo 博客根目录，克隆或下载 `hexo-theme-yun` 主题，置于 `themes/yun`。
 
-> 你也可以考虑加上 `--depth 1` 的参数来只克隆当前版本（体积更下，速度更快）。
+> 你也可以考虑加上 `--depth 1` 的参数来只克隆当前版本（体积更小，速度更快）。
 
 ```sh
 git clone -b master https://github.com/YunYouJun/hexo-theme-yun themes/yun
@@ -83,7 +83,7 @@ theme: yun
 
 `avatar` 的完整配置如下
 
-```yml
+```yaml
 avatar:
   url: /images/avatar.jpg
   rounded: true
@@ -92,7 +92,7 @@ avatar:
 
 你可以在 `yun.yml` 中仅定义（当然，全部覆盖也是可以的）
 
-```yml
+```yaml
 avatar:
   url: /images/avatar.jpg
 ```
@@ -107,6 +107,10 @@ avatar:
 cd themes/yun
 git pull
 ```
+
+::: tip
+当主题配置出现不兼容更新时，请参见 [迁移指南](/guide/migrate)。
+:::
 
 如果您修改了主题的 `themes/yun/_config.yml` 配置文件，那么您升级时可能会遭遇冲突，需要自行调整。
 
@@ -152,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 并在 `yun.yml` 中设置 `head` 选项来引入 css 或 js。
 
-```yml
+```yaml
 head:
   css:
     aplayer: https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css
@@ -164,7 +168,7 @@ head:
 
 ### 自动升级
 
-你想要完全自动更新，时刻保持最新主题，可以采用持续集成（如 GitHub Actions, [Travis](https://travis-ci.com/) 等）。
+你想要完全自动更新，时刻保持最新主题，可以采用持续集成（如 [GitHub Actions](https://github.com/features/actions), [Travis](https://travis-ci.com/) 等）。
 
 你可以参考我的 GitHub Action 配置文件 [gh-pages.yml](https://github.com/YunYouJun/yunyoujun.github.io/blob/hexo/.github/workflows/gh-pages.yml)。(照抄配置，放在对应文件夹下即可，GitHub Actions 为 GitHub 自带的服务。)
 若你没有使用 `algolia_search`，请删除 `algolia` 相关部分。
@@ -175,7 +179,7 @@ head:
 
 如果你想要克隆稳定版本的主题，你可以自行 fork，然后修改源项目地址为你 fork 后的项目地址即可。
 
-```yml
+```yaml
 run: |
   git clone -b dev https://github.com/YunYouJun/hexo-theme-yun.git themes/yun
 ```

@@ -4,35 +4,27 @@
 
 ## 字数统计
 
-安装 [hexo-symbols-count-time](https://github.com/theme-next/hexo-symbols-count-time)
+> v0.9.4 使用 [hexo-wordcount](https://github.com/willin/hexo-wordcount) 替代 [hexo-symbols-count-time](https://github.com/theme-next/hexo-symbols-count-time)
+
+安装 [hexo-wordcount](https://github.com/willin/hexo-wordcount)
 
 ```sh
-npm install hexo-symbols-count-time
+npm install hexo-wordcount
 # or
-# yarn add hexo-symbols-count-time
+# yarn add hexo-wordcount
 ```
 
-进入博客根目录的配置文件 `_config.yml`
+在配置文件 `source/_data/yun.yml` 中：
 
-```yml
-symbols_count_time:
-  symbols: true
+- `count`: 字数统计
+- `time`: 阅读时间
+
+```yaml
+wordcount:
+  enable: true
+  count: true
   time: true
-  total_symbols: true
-  total_time: true
 ```
-
-进入博客根目录的配置文件 `source/_data/yun.yml`
-
-```yml
-symbols_count_time:
-  item_text_post: true
-  item_text_total: true
-  awl: 2
-  wpm: 250
-```
-
-> 更多信息及使用方法请参见 [hexo-symbols-count-time | GitHub](https://github.com/theme-next/hexo-symbols-count-time)。
 
 ## RSS
 
@@ -46,7 +38,7 @@ npm install hexo-generator-feed --save
 
 可配置在 `yun.yml` 的 `social` 字段里，如：
 
-```yml
+```yaml
 social:
   - name: RSS
     link: /atom.xml # config.feed.path
@@ -117,7 +109,7 @@ npm install --save hexo-helper-live2d
 
 > 更多选项含义请参见 [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
 
-```yml
+```yaml
 live2d:
   enable: true
   # 推荐使用 jsdelivr 的 CDN 来加载
@@ -145,34 +137,43 @@ live2d:
   #   hitokoto: true
 ```
 
-## 标签云
+## 文章短链接
 
-安装 [hexo-tag-cloud](https://github.com/MikeCoder/hexo-tag-cloud)
+将文章链接优化为短链接，需要安装 [hexo-abbrlink](https://github.com/rozbo/hexo-abbrlink) 插件；具体例子 参考 [#39](https://github.com/YunYouJun/hexo-theme-yun/issues/39)
 
-```sh
-npm install hexo-tag-cloud
+- 需要额外设置，执行： `npm install hexo-abbrlink --save` 安装插件，由于插件官网前几天更新， 需要额外做一些设置
+
+> 在 `hexo/_config.yml` 找到 和 `permalink:` 相关代码片， 修改为如下：
+
+```yaml
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://yoursite.com
+root: /
+# permalink: :year/:month/:day/:title/  # 旧的注释掉
+# permalink_defaults:                   # 旧的注释掉
+permalink: posts/:abbrlink/
+abbrlink:
+  alg: crc32 #support crc16(default) and crc32
+  rep: hex #support dec(default) and hex
+  drafts: false #(true)Process draft,(false)Do not process draft
+  # Generate categories from directory-tree
+  # depth: the max_depth of directory-tree you want to generate, should > 0
+  auto_category:
+    enable: false #默认为 true， 手改改为 false
+    depth:
 ```
+
+## 标签云（词云）
 
 在 `yun.yml` 中开启在侧边栏下方显示
 
-```yml
-tag_cloud:
+- `enable`: 开启后，将在标签页显示彩色词云
+
+```yaml
+wordcloud:
   enable: true
-  width: 300
-  height: 300
-```
-
-在 Hexo 工作目录中的 `_config.yml` 里添加更多自定义配置（请参见[插件文档](https://github.com/MikeCoder/hexo-tag-cloud/blob/master/README.ZH.md)）：
-
-```yml
-# hexo-tag-cloud
-tag_cloud:
-  textFont: Trebuchet MS, Helvetica
-  textColor: "#333"
-  textHeight: 25
-  outlineColor: "#E2E1D1"
-  maxSpeed: 0.5
-  pauseOnSelected: false # true 意味着当选中对应 tag 时,停止转动
+  height: 350
 ```
 
 ## 播放器
@@ -187,7 +188,7 @@ npm install hexo-tag-aplayer
 
 推荐的配置（在 Hexo 的根目录下的 `_config.yml` 中）：
 
-```yml
+```yaml
 aplayer:
   cdn: https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js
   style_cdn: https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css
@@ -200,14 +201,14 @@ aplayer:
 
 > [重复载入 Aplayer.js 资源脚本问题](https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md#%E9%87%8D%E5%A4%8D%E8%BD%BD%E5%85%A5-aplayerjs-%E8%B5%84%E6%BA%90%E8%84%9A%E6%9C%AC%E9%97%AE%E9%A2%98)
 
-```yml
+```yaml
 aplayer:
   asset_inject: false
 ```
 
 然后在文章头部决定是否开启 `aplayer`:
 
-```yml {3}
+```yaml {3}
 ---
 title: xxx
 aplayer: true
@@ -227,42 +228,42 @@ aplayer: true
 
 你也可以在 `yun.yml` 中设置全局开启。（当你设置了全局的播放器时，可以使用它。）
 
-- `meting`: 是否开启 [meting](https://github.com/metowolf/MetingJS)，注意与 `widget` 下的 `meting` 相区分
+- `meting`: 是否开启 [meting](https://github.com/metowolf/MetingJS)，决定是否引入 meting 资源。（注意与 `widget` 下的 `meting` 相区分）
 - `widget`: 你可以将 `widget.enable` 设置为 `true` 来打开全局播放器。（`aplayer.global` 必须为 `true`）
-  - `meting`: 此处的 `meting` 控制是否打开全局播放器的 meting。打开时，将加载 `option`；关闭时，将使用自定义的 `audio`。
+  - `meting.enable`: 此处的 `meting` 控制是否打开全局播放器挂件的 meting。打开时，将加载 `option`；关闭时，将使用自定义的 `audio`。
   - `audio`: 给出了加载自定义音乐的默认参考配置，更多请参见 [官方文档](https://aplayer.js.org/#/home)。
-  - `option`: 参考 [Option | MetingJS](https://github.com/metowolf/MetingJS/tree/v1.2#option)
+
+更多选项: 参考 [Option | Aplayer](https://aplayer.js.org/#/home?id=options)
 
 开启 [pjax](#pjax)，可以实现切换页面时，不中断音乐播放器。（为了正确加载音乐播放器，当切换到的文章页面也存在音乐播放器时，`Meting` 会重新加载。）
 
-```yml
+```yaml
 aplayer:
-  global: true
+  global: false
   meting: true
   # https://github.com/metowolf/MetingJS/tree/v1.2#option
   widget:
-    enable: true
-    meting: true
+    enable: false
+    autoplay: false
+    # theme: "#2980b9"
+    loop: all
+    order: list
+    preload: auto
+    volume: 0.7
+    mutex: true
+    lrcType: 0
+    listFolded: false
+    listMaxHeight: 340px
     audio:
       - name: 星宿计时
         artist: 杉田朗/洛天依
         url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/audio/star-timer.mp3
         cover: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0.jpg
-    option:
+    meting:
+      enable: true
       id: 308168565
       server: netease
       type: playlist
-      autoplay: false
-      # theme: "#2980b9"
-      loop: all
-      order: list
-      preload: auto
-      volume: 0.7
-      mutex: true
-      lrctype: 0
-      listfolded: false
-      listmaxheight: 340px
-      storagename: metingjs
 ```
 
 由于 `hexo-tag-aplayer` 太香了，我决定移除原先的媒体包裹脚本。实在有需要的同学，可以自行外挂添加。
@@ -307,7 +308,7 @@ embeddedVideoTransformer: function() {
 - `copy_tex`: 复制 katex 文本，默认开启
 - `global`: 如果你想要在全局页面使用 `KaTex`，（譬如首页的文章摘要），那么你可以开启它。（当然，这也意味着你的页面每次需要加载更多的资源。）
 
-```yml
+```yaml
 katex:
   copy_tex: true
   global: false
@@ -372,15 +373,7 @@ $$ E = mc^2 $$
 
 使用 [pjax](https://github.com/MoOx/pjax) 实现。
 
-> 正处在开发……
-
-```yml
+```yaml
 pjax:
   enable: true
 ```
-
-- [ ] pjax 适配
-  - [x] Valine
-  - [x] TOC
-  - [x] aplayer
-  - [ ] gallery

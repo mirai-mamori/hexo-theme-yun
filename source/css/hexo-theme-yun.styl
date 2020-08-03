@@ -12,6 +12,33 @@
 // widget
 @import '_widget';
 
+if (hexo-config('mode') == 'dark') {
+  :root {
+    dark();
+    --color-mode: 'dark';
+  }
+
+  @import '_global/dark';
+} else if (hexo-config('mode') == 'auto') {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-mode: 'dark';
+    }
+
+    :root:not([data-user-color-scheme]) {
+      dark();
+
+      @import '_global/dark';
+    }
+  }
+
+  [data-user-color-scheme='dark'] {
+    dark();
+
+    @import '_global/dark';
+  }
+}
+
 // extend page
 if (hexo-config('albums.enable')) {
   @import '_extend/albums';
@@ -19,4 +46,9 @@ if (hexo-config('albums.enable')) {
 
 if (hexo-config('girls.enable')) {
   @import '_extend/girls';
+}
+
+// custom style
+if (hexo-config('custom.style')) {
+  @import '../../../' + hexo-config('custom.style');
 }

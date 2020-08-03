@@ -18,7 +18,7 @@
 
 > 站点的语言需要自己在 Hexo 目录下的 `_config.yml` 中设置。
 
-```yml
+```yaml
 language: zh-CN
 ```
 
@@ -30,7 +30,9 @@ language: zh-CN
 
 配置方式参考下例：
 
-```yml
+> 各语言对应属性和内容见 `themes/yun/languages`，覆盖对应项即可。
+
+```yaml
 en: # 将要覆盖的语言
   menu:
     home: My Index
@@ -54,7 +56,7 @@ zh-CN: # 将要覆盖的语言
 
 > [color-dust](https://www.yunyoujun.cn/color-dust) 此前写的一个可以分析图片配色的小工具。
 
-```yml
+```yaml
 colors:
   primary: "#6200ee"
   # bg: "#F5F5F5"
@@ -68,7 +70,7 @@ colors:
 
 可以为你的标签指定色彩，默认色 `#333`。
 
-```yml
+```yaml
 tags:
   Vue: "#4fc08d"
   Hexo: "#0E834D"
@@ -88,7 +90,7 @@ tags:
 
 可以为你的分类指定色彩，默认色 `#333`。
 
-```yml
+```yaml
 categories:
   笔记: dimgray
 ```
@@ -105,21 +107,43 @@ JavaScript 资源类型说明：
 - `async`: 异步加载，加载完成后立即执行。
 - `defer`: 异步加载资源，但最后执行。
 
-```yml
+```yaml
 head:
   css:
-    example: //example.min.js
+    example: //example.min.css
   js:
     base:
     async:
     defer:
 ```
 
+::: tip
+
+譬如想要自定义 css，先设置 `yun.yml`:
+
+```yaml
+head:
+  css:
+    custom: /css/custom.css
+```
+
+对应的文件路径为 `source/css/custom.css`（愣着干啥，自己新建去）
+
+写你自定义的 CSS 就可以了。
+
+```css
+.char {
+  background-color: transparent;
+}
+```
+
+:::
+
 ### favicon
 
 设置网站图标（确保你的 `favicon.ico` 文件已放置于 `source` 文件夹下），如下设置：
 
-```yml
+```yaml
 favicon: /favicon.ico
 ```
 
@@ -132,7 +156,9 @@ favicon: /favicon.ico
 
 Example:
 
-```html
+<!-- html formatOnSave 出错 -->
+
+```svg
 <svg id="yun-logo">
   <style>
     #yun-logo {
@@ -164,7 +190,7 @@ Content Delivery Network，统一加载网络资源，有利于提高网页加�
 
 `cdn` 为主题目前默认引入的 CDN 资源，结构与 `head` 类似。
 
-```yml
+```yaml
 cdn:
   pre: ""
   css:
@@ -172,7 +198,7 @@ cdn:
     base:
     async:
       # 默认引入的图标资源，使用 iconfont
-      iconfont: //at.alicdn.com/t/font_1140697_asgm6pccckc.js
+      iconfont: //at.alicdn.com/t/font_1140697_stqaphw3j4.js
     defer:
 ```
 
@@ -182,7 +208,7 @@ cdn:
 > `@latest` 为使用最新版本（但它仍然会被缓存，**且需要 12 h 才能更新**，如果你需要强制刷新，请参考 [Purge cache](https://github.com/jsdelivr/jsdelivr#purge-cache)）
 > ~~请记住，白嫖是有代价的~~
 
-```yml
+```yaml
 cdn:
   pre: https://cdn.jsdelivr.net/gh/YunYouJun/yunyoujun.github.io@latest
 ```
@@ -205,7 +231,7 @@ cdn:
 
 ### 覆盖 iconfont
 
-```yml
+```yaml
 cdn:
   js:
     async:
@@ -227,16 +253,15 @@ CDN 可以去 `head` 处添加。
 
 > [\<link\> ：外部资源链接元素 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/link)
 
-```yml
+```yaml
 preload:
   style:
     - /css/hexo-theme-yun.css
   script:
+    - /js/utils.js
     - /js/hexo-theme-yun.js
 
 prefetch:
-  style:
-    - /css/prism.css
   script:
     - /js/sidebar.js
 
@@ -252,7 +277,7 @@ preconnect:
 
 本主题默认使用 [Remix Icon](https://remixicon.com/) 的部分图标，并通过 [iconfont](https://www.iconfont.cn/) 生成的 cdn 加载。
 
-> 默认支持的图标列表见 [/guide/icon.html]
+> 默认支持的图标列表见 [默认图标](/guide/icon.html)
 
 如您想要使用其他图标，可以采用以下几种图标和使用方式。
 
@@ -278,12 +303,12 @@ preconnect:
 
 随后如下在 `yun.yml` 中设置。
 
-```yml
+```yaml
 head:
   js:
     async:
       # 这里是你从 iconfont 处获得的图标链接。
-      iconfont: //at.alicdn.com/t/font_1623879_a03x3er7qur.js
+      iconfont: //at.alicdn.com/t/font_1140697_stqaphw3j4.js
 ```
 
 ### [Remix Icon](https://remixicon.com/)
@@ -307,13 +332,13 @@ head:
 
 本主题已对 `ion-icon` 标签引入的方式进行了适配，如下配置即可。
 
-```yml
+```yaml
 head:
   js:
     async: https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons.js
 ```
 
-```yml
+```yaml
 icon: ion-icon heart
 ```
 
@@ -321,13 +346,13 @@ icon: ion-icon heart
 
 与其他 CSS 引入字体图标的方式相同。
 
-```yml
+```yaml
 head:
   css:
     ionicons: https://cdn.jsdelivr.net/npm/ionicons/dist/css/ionicons.min.css
 ```
 
-```yml
+```yaml
 icon: icon ion-md-heart
 ```
 
@@ -354,13 +379,13 @@ icon: icon ion-md-heart
 
 引入对应 CDN 资源：
 
-```yml
+```yaml
 head:
   css:
     material: https://fonts.googleapis.com/icon?family=Material+Icons
 ```
 
-```yml
+```yaml
 icon: material-icons face
 ```
 
@@ -374,7 +399,7 @@ icon: material-icons face
 
 引入它的 CSS 资源：
 
-```yml
+```yaml
 head:
   css:
     fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
@@ -382,7 +407,7 @@ head:
 
 对应 `icon` 字段中填写对应 `class` 名称即可。
 
-```yml
+```yaml
 icon: fas fa-home
 ```
 
@@ -400,7 +425,7 @@ icon: fas fa-home
 
 > 如果你想使用 QQ 跳转链接，你可能还需要到 [QQ 推广](https://shang.qq.com/) 开通。
 
-```yml
+```yaml
 social:
   - name: RSS
     # set rss in your root config
@@ -469,7 +494,7 @@ social:
 
 您只需要在 `yun.yml` 中设置 `social` 来覆盖即可（这时即可只显示你的邮箱图标，而没有其他图标）：
 
-```yml
+```yaml
 social:
   - name: E-Mail
     link: mailto:你的邮箱
@@ -479,7 +504,7 @@ social:
 
 如果您不想放置任何链接，仅需在 `yun.yml` 中设置：
 
-```yml
+```yaml
 social:
 ```
 
@@ -496,16 +521,18 @@ social:
 
 - `enable`: 是否开启
 - `title`: 设置文字内容
+- `border`: 是否开启标语中字符的左右边框
 - `cloud`: 在首页下方显示流动的云
   - `enable`: 是否开启
-  - `ccolor`: 自定义色彩
+  - `color`: 自定义色彩
 - `go_down`: 向下箭头按钮（点击翻页）
 
-```yml
+```yaml
 banner:
   enable: true
   title: 云游君的小站
   src: /js/ui/banner.js
+  border: true
   cloud:
     enable: true
     color: "white"
@@ -514,18 +541,44 @@ banner:
     icon: icon-arrow-down-s-line
 ```
 
+你可以通过数组形式来自定义字符的分割，例如：
+
+```yaml
+banner:
+  title:
+    - Yun
+    - You
+    - Jun
+    - Blog
+```
+
 ### 公告
 
 你可以如下配置来开启公告。
 它将显示在所有文章卡片的最上方，标语的下方。
 
-```yml
+```yaml
 notice:
   enable: true
   content: Thanks for playing my game.
 ```
 
 ## UI
+
+### 亮暗模式
+
+- `light`: 始终为亮色模式，不打包暗色样式资源
+- `dark`: 始终为暗色模式
+- `auto`: 根据系统亮暗模式自动切换，侧边栏将显示亮暗切换按钮，可自由切换。
+
+> 暗色模式下纯黑图标，将变为白色。
+
+你可以为暗色模式，设置独立的背景和搜索背景，参见对应配置项。
+
+```yaml
+mode: auto
+# 可选 light | dark | auto
+```
 
 ### 字体
 
@@ -538,7 +591,7 @@ notice:
 
 > 本主题为了保证足够轻量，默认不引入任何字体，均使用系统自带的默认字体。你可以自行决定是否引入。
 
-```yml
+```yaml
 head:
   css:
     fonts: https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap
@@ -551,14 +604,12 @@ head:
 > 你可以仅覆盖你想覆盖的字体族。
 
 - 衬线字体（Serif）：较粗表强调，通常用于首页标语（Banner）、Say、站点与文章标题（以及 links、girls 等页面的作品名称）等处。
-- 无衬线字体（Sans Serif）：较细以营造轻盈之感，通常为普通文本内容。（如果你的字体显示较粗，可能是你在 Windows 系统上安装了 `PingFang SC` 字体，却没有安装对应字重。）
+- 无衬线字体（Sans Serif）：通常为普通文本内容。（如果你的字体显示较粗，可能是你在 Windows 系统上安装了 `PingFang SC` 字体，却没有安装对应字重。）
 - 等宽字体（monospace）：字符均具有相同宽度，通常用于需要相同宽度以对齐之处（如日期、序号）。
 
 将 `font.cdn.enable` 设置为 `false` 以全部使用系统默认字体，达到最佳访问速度。（默认开启时，使用 `media="none" onload="this.media='all'"` 实现 css 样式的异步加载。）
 
-> 代码处的等宽字体始终使用 prism.css 设置的字体 `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`。
-
-```yml
+```yaml
 font:
   cdn:
     enable: true
@@ -569,7 +620,7 @@ font:
     weight: 900
   sans_serif:
     family: "'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif"
-    weight: 300
+    weight: 400
   monospace:
     family: "'Source Code Pro', 'Courier New', Courier, Consolas, Monaco, monospace"
 ```
@@ -581,16 +632,19 @@ font:
 ::: tip
 注意，现背景模糊已默认关闭。更建议用户通过图像处理工具来模糊图片作为背景。
 
-> 你也可以直接使用一些在线图像模糊工具。譬如[高斯模糊](https://www.anooc.com/ts/gs)（这只是我 Google 搜到的第一个，你可以寻找喜欢的工具进行处理。）
+> 你也可以直接使用一些在线图像模糊工具。
 
 这也能消除彩色图片应用 `blur` 滤镜时产生的白边。
 同时也能缩小图片背景，提高载入与渲染速度。
 :::
 
-```yml
+- `dark`: 暗色背景图片链接，仅在开启暗色模式时有效。
+
+```yaml
 bg_image:
   enable: true
   url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
+  # dark:
   # blur: 30px # 设置背景模糊程度
   opacity: 0.8
 ```
@@ -601,10 +655,12 @@ bg_image:
 #### 搜索背景
 
 - `placeholder`: 搜索框提示文字（如果不设置，将自动根据 Hexo 语言配置选取对应的文本）
+- `dark_bg_image`：暗色模式下的背景，仅在你开启暗色模式时有效
 
-```yml
+```yaml
 search:
   bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-2.jpg
+  dark_bg_image: xxx
   # placeholder:
 ```
 
@@ -615,16 +671,16 @@ search:
 > [trianglify - GitHub](https://github.com/qrohlf/trianglify)
 
 - `enable`: 默认关闭
-- `cell_size`: 多边形网格尺寸
-- `palette`: 调色盘，请参考文档配置
+- `cellSize`: 多边形网格尺寸
+- `palette`: 调色盘，请参考文档配置（[更多色彩](https://github.com/qrohlf/trianglify/blob/master/src/utils/colorbrewer.js)）
 - `opacity`: 透明度
 
 > 因为背景采用拉伸，更大的 `width` 与 `height` 会获得更高的清晰度。（请与性能进行取舍）
 
-```yml
+```yaml
 trianglify:
   enable: false
-  cell_size: 75
+  cellSize: 75
   width: 800
   height: 600
   palette: '["YlGnBu", "GnBu", "Purples", "Blues"]'
@@ -638,7 +694,7 @@ trianglify:
 - `enable`: 是否开启，默认开启
 - `colors`：包含的颜色，默认为几种蓝色配色（请仿照下方使用 RGB 数值）
 
-```yml
+```yaml
 fireworks:
   enable: true
   colors:
@@ -651,10 +707,16 @@ fireworks:
 
 ### ScrollReveal
 
-首页文章卡片的滚动浮现效果，可见[官网](https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js)，默认开启。
+首页卡片与文章内部图片的滚动浮现效果，可见[官网](https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js)，默认开启。
 
-```yml
-scrollreveal: true
+- `targets`: 为元素选择器对应的元素添加滚动浮现效果
+
+```yaml
+scrollreveal:
+  enable: true
+  targets:
+    - .post-card
+    - .post-content img
 ```
 
 ### Cursor 光标
@@ -666,7 +728,7 @@ scrollreveal: true
 - `default`: 默认状态下图标。
 - `pointer`: 指针（即链接状态下）图标。
 
-```yml
+```yaml
 cursor:
   enable: false
   default: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/pointer.cur
@@ -678,10 +740,16 @@ cursor:
 
 ### 侧边栏背景
 
-```yml
+- `tagcloud`: 在侧边栏显示 Hexo 原生标签页
+  - `amount`: 显示的标签数量
+
+```yaml
 sidebar:
   bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-1.jpg
   bg_position: bottom 3rem center
+  tagcloud:
+    enable: false
+    amount: 20
 ```
 
 > 注意：如果你使用子目录来放置你的博客，如 `xxx.github.io/blog/`，你的图片链接需要设置为 `/blog/xxx`，或者直接使用图床。
@@ -698,7 +766,7 @@ sidebar:
 - `opacity`: 透明度
 - `mickey_mouse`: 默认关闭，开启后文章页面侧边栏的头像将向上移动（迪士尼警告）
 
-```yml
+```yaml
 avatar:
   enable: true
   url: /images/avatar.jpg
@@ -718,53 +786,45 @@ avatar:
 分别为：
 
 - 主页
-- 归档
-- 标签
-- 分类
+- 列表
+  - 归档
+  - 标签
+  - 分类
 - 自定义（你可以设置为任意图标及链接，当你未设置自定义图标链接时，它将自动变为文档导航按钮以保持整体的对称）
 
 > 顺带提醒你遇到问题先看看文档
 
-```yml
+list
+
+- `type`: 是否为 archives/categories/tags 等类型，会自动匹配此类型标题及显示对应数量。留空则为其他普通链接。
+- `title`: 可以覆盖默认标题
+- `icon`: 自定义你的图标
+- `path`: 自定义路径
+- `count`: 默认为对应类型的数量，你也可以使用自定义文本覆盖（如注释部分）
+
+```yaml
 menu:
   home:
     path: /
     icon: icon-home-4-line
-  archives:
-    path: /archives/
-    icon: icon-archive-line
-  tags:
-    path: /tags/
-    icon: icon-price-tag-3-line
-  categories:
-    path: /categories/
-    icon: icon-folder-2-line
+  list:
+    - type: archives
+      path: /archives/
+      icon: icon-archive-line
+    - type: categories
+      path: /categories/
+      icon: icon-folder-2-line
+    - type: tags
+      path: /tags/
+      icon: icon-price-tag-3-line
+    # - path: https://www.yunyoujun.cn
+    #   icon: icon-cloud-line
+    #   count: 你猜
   custom:
     title: 文档
     path: https://yun.yunyoujun.cn
     icon: icon-settings-line
 ```
-
-::: tip
-侧边栏的标签与分类，只有当你真正有文章使用了它们时才会被展示出来。
-
-例如：
-
-```md
----
-title: 教你如何从零开始搭建一个属于自己的网站
-date: 2020-03-05 01:31:08
-updated: 2020-03-13 01:31:08
-tags:
-  - 教程
-  - Hexo
-  - 分享
-categories:
-  - 云游的小安利
----
-```
-
-:::
 
 ### 页面链接
 
@@ -776,7 +836,7 @@ categories:
 
 > [页面配置](/guide/page.html#友链-links)
 
-```yml
+```yaml
 pages:
   - name: 我的小伙伴们
     url: /links/
@@ -786,17 +846,17 @@ pages:
 
 如果您不想放置任何链接，仅需在 `yun.yml` 中设置：
 
-```yml
+```yaml
 pages:
 ```
 
 ## 文章
 
-### 首页卡片
+### 内容卡片
 
-- `opacity`: 自定义首页卡片透明度，默认为 `0.8`
+- `opacity`: 自定义展示的文章卡片透明度，默认为 `0.8`
 
-```yml
+```yaml
 post_card:
   opacity: 0.8
 ```
@@ -817,10 +877,13 @@ url: https://www.bilibili.com/video/av8153395/
 
 在文章标题前将会出现 bilibili 的图标，点击标题会跳转至对应的链接。
 
-目前默认支持以下类型（哔哩哔哩、豆瓣、GitHub、网易云音乐、微信公众号、微博、语雀、知乎、外链）：
+目前默认支持以下类型（哔哩哔哩、豆瓣、GitHub、网易云音乐、微信公众号、微博、语雀、知乎、Notion、外链）：
 
-```yml
+```yaml
 types:
+  link:
+    color: blue
+    icon: icon-external-link-line
   bilibili:
     color: "#FF8EB3"
     icon: icon-bilibili-line
@@ -833,6 +896,9 @@ types:
   netease-cloud-music:
     color: "#C10D0C"
     icon: icon-netease-cloud-music-line
+  notion:
+    color: black
+    icon: icon-notion
   wechat:
     color: "#1AAD19"
     icon: icon-wechat-2-line
@@ -845,14 +911,11 @@ types:
   zhihu:
     color: "#0084FF"
     icon: icon-zhihu-line
-  link:
-    color: blue
-    icon: icon-external-link-line
 ```
 
 你也可以自己在 `yun.yml` 设置你跳转不同链接专属的图标和颜色。
 
-```yml
+```yaml
 type:
   google:
     color: xxx
@@ -885,9 +948,9 @@ Hexo 主题 Yun
   - `index`: 设置为 `index` 时，将只在首页隐藏，归档中仍然展示。（譬如放一些没有必要放在首页的笔记，并在归档中方便自己查看。）
   - `true`: 当设置为 `true` 时，该文章仍然会被渲染，你自己可以直接访问链接进行查看。但不会被显示在展示的文章卡片与归档中。
 
-> 什么你想完全不渲染不显示，那你为何不将其放在 `_drafts` 文件夹下，或干脆不提交这篇文章。
+> 什么？你想完全不渲染不显示？那你为何不将其放在 `_drafts` 文件夹下，或干脆不提交这篇文章。
 
-```yml {3}
+```yaml {3}
 ---
 title: xxx
 hide: true
@@ -922,7 +985,7 @@ indexing: false
 - `categories`: 是否显示种类
 - `tags`: 是否显示标签
 
-```yml
+```yaml
 post_meta:
   item_text: false
   created_at: true
@@ -956,13 +1019,15 @@ title: 一级标题
 - `max_depth`: 生成 TOC 的最大深度
 - `min_depth`: 生成 TOC 的最小深度
 - `placeholder`: 当目录不存在时，显示的话。
+- `collapse`: 是否折叠目录（默认折叠，即隐藏次级目录，滚到到相关位置时才展开）
 
-```yml
+```yaml
 toc:
   list_number: true
   max_depth: 6
   min_depth: 1
   placeholder: 很遗憾，咱没写啥目录
+  collapse: false
 ```
 
 > [辅助函数 ｜ Hexo](https://hexo.io/zh-cn/docs/helpers#toc)
@@ -977,7 +1042,7 @@ toc:
 如我使用 `GitHub` 作为博客的托管仓库，仓库名为 `yunyoujun.github.io`，在 `hexo` 分支下，`source` 文件夹中，
 则链接为 <https://github.com/YunYouJun/yunyoujun.github.io/tree/hexo/source/>。
 
-```yml
+```yaml
 post_edit:
   enable: true
   url: https://github.com/YunYouJun/yunyoujun.github.io/tree/hexo/source/
@@ -1001,7 +1066,7 @@ npm install hexo-prism-plugin
 
 在 Hexo 工作目录下的 `_config.yml` 中配置：
 
-```yml
+```yaml
 # https://github.com/ele828/hexo-prism-plugin
 prism_plugin:
   mode: preprocess # realtime/preprocess
@@ -1012,7 +1077,7 @@ prism_plugin:
 
 关闭 Hexo 自带的 `highlight`（此处在 Hexo 工作目录的 `_config.yml` 中）
 
-```yml
+```yaml
 highlight:
   enable: false
 ```
@@ -1025,17 +1090,29 @@ highlight:
 
 设置您的文章的分享版权
 
-默认使用 [Creative Commons 4.0 International License](https://creativecommons.org/share-your-work/licensing-types-examples)
+> [关于许可协议](https://creativecommons.org/licenses/)
+> 默认使用 署名-非商业性使用-相同方式共享 4.0，即 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)。
 
 - `license`: 设置证书 (by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero)
-- `language`: 设置语言 (deed.zh | deed.fr | deed.de)
+- `language`: 设置语言 (deed.zh | deed.en | deed.ja ｜ ...)
 - `post`: 在每篇文章末尾显示
+- `clipboard`: 是否在复制文章时，在剪贴板中追加版权信息（默认关闭）
 
-```yml
+```yaml
 creative_commons:
   license: by-nc-sa
   post: true
   language: deed.zh
+  clipboard: false
+```
+
+> 你的 `url` 请在 Hexo 工作目录下的 `_config.yml` 中设置。
+> [配置｜ Hexo](https://hexo.io/zh-cn/docs/configuration#%E7%BD%91%E5%9D%80)
+
+```yaml
+# URL
+## If your site is put in a subdirectory, set url as 'https://yoursite.com/child' and root as '/child/'
+url: https://www.yunyoujun.cn
 ```
 
 ### 图片懒加载
@@ -1045,7 +1122,7 @@ creative_commons:
 > [<img> loading](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img#attr-loading)
 > 当前仍有许多浏览器不支持该特性 [Can I use loading?](https://caniuse.com/#search=loading)
 
-```yml
+```yaml
 lazyload:
   enable: true
 ```
@@ -1058,21 +1135,7 @@ lazyload:
 - `icon`: 打赏图标
 - `comment`: 在打赏按钮下显示你想说的话
 - `url`: 你的打赏链接（当你开启打赏链接时，将自动跳转你的外部链接而不是展开二维码）
-
-```yml
-reward_settings:
-  enable: true
-  icon: icon-hand-coin-line
-  comment: I'm so cute. Please give me money.
-  # url: https://github.com/YunYouJun/yunyoujun.github.io/issues/96
-```
-
-您也可以在某篇文章的首部单独设置是否开启打赏。
-
-```yml
-reward: true
-# reward: false
-```
+- `methods`: 数组，打赏方式
 
 ### 打赏二维码
 
@@ -1083,30 +1146,38 @@ reward: true
 - `color`: 图标颜色
 - `icon`: 图标名称
 
-```yml
+在 `yun.yml` 中进行覆盖。
+
+::: warning
+v0.9.2 将原先的 `reward_settings` 与 `reward` 配置合并。
+:::
+
+```yaml
 reward:
-  - name: 支付宝
-    path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg
-    color: "#00A3EE"
-    icon: icon-alipay-line
-  - name: QQ 支付
-    path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png
-    color: "#12B7F5"
-    icon: icon-qq-line
-  - name: 微信支付
-    path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg
-    color: "#2DC100"
-    icon: icon-wechat-pay-line
+  enable: true
+  icon: icon-hand-coin-line
+  comment: I'm so cute. Please give me money.
+  # url: https://github.com/YunYouJun/yunyoujun.github.io/issues/96
+  methods:
+    - name: 支付宝
+      path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg
+      color: "#00A3EE"
+      icon: icon-alipay-line
+    - name: QQ 支付
+      path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png
+      color: "#12B7F5"
+      icon: icon-qq-line
+    - name: 微信支付
+      path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg
+      color: "#2DC100"
+      icon: icon-wechat-pay-line
 ```
 
-你可以在 `yun.yml` 中进行覆盖。
+您也可以在某篇文章的首部单独设置是否开启打赏。
 
-```yml
-reward:
-  - name: 支付宝
-    path: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg
-    color: "#00A3EE"
-    icon: icon-alipay-line
+```yaml
+reward: true
+# reward: false
 ```
 
 ## 页脚
@@ -1115,7 +1186,7 @@ reward:
 以下配置均写在 `footer` 字段下，请同时放到 `footer` 下。（只保留一个 `footer`。）
 如：
 
-```yml
+```yaml
 footer:
   since: 1997
   icon:
@@ -1128,7 +1199,7 @@ footer:
 
 ### 起始年份
 
-```yml
+```yaml
 footer:
   since: 2016
 ```
@@ -1141,7 +1212,7 @@ footer:
 - `animated`: 是否开启动画
 - `color`: 图标颜色
 
-```yml
+```yaml
 footer:
   icon:
     name: icon-cloud-line
@@ -1160,7 +1231,7 @@ footer:
 - `enable`: 开启
 - `version`: 显示版本
 
-```yml
+```yaml
 footer:
   powered:
     enable: true
@@ -1175,7 +1246,7 @@ footer:
 - `enable`: 开启备案
 - `icp`: 备案号
 
-```yml
+```yaml
 footer:
   beian:
     enable: true
@@ -1188,7 +1259,7 @@ footer:
 
 `本博客已萌萌哒地运行 442 天 19 小时 28 分 40 秒(●'◡'●)`
 
-```yml
+```yaml
 footer:
   live_time:
     enable: false
@@ -1202,7 +1273,7 @@ footer:
 `custom_text` 为自定义页脚，可以包含 HTML。
 譬如有时使用其他服务商进行托管页面，或一些 ICP 之外的备案信息。
 
-```yml
+```yaml
 footer:
   custom_text: Hosted by <a href="https://pages.coding.me" rel="noopener" target="_blank">Coding Pages</a>
 ```
@@ -1217,7 +1288,7 @@ footer:
 - `hitokoto.enable`: 是否开启 [一言](https://hitokoto.cn/)，开启一言时，将默认覆盖 `say.api`
 - `hitokoto.api`: 你可以参考 [语句接口｜一言](https://developer.hitokoto.cn/sentence/) 来根据你的想法使用一言 API
 
-```yml
+```yaml
 say:
   enable: true
   api: https://cdn.jsdelivr.net/gh/ElpsyCN/say@gh-pages/sentences.json
@@ -1232,7 +1303,7 @@ say:
 
 > [say.elpsy.cn](https://say.elpsy.cn) 是我自己收藏中二语句的地方。= =，自动导出 JSON 用来拉取。
 
-### 自定义
+### 自定义语句
 
 你也可以使用自定义的话语。
 
@@ -1267,7 +1338,7 @@ say:
 
 譬如：
 
-```yml
+```yaml
 say:
   enable: true
   api: /data/sentences.json
@@ -1288,11 +1359,24 @@ say:
 > 为表达全国各族人民对抗击新冠肺炎疫情斗争牺牲烈士和逝世同胞的深切哀悼，国务院发布公告，决定 2020 年 4 月 4 日举行全国性哀悼活动。
 > [国务院办公厅关于为新冠肺炎疫情牺牲烈士和逝世同胞举行全国性哀悼活动的通知](http://www.gov.cn/zhengce/content/2020-04/03/content_5498474.htm)
 
-```yml
+```yaml
 mourn:
   enable: true
   days:
     - "4-4"
+```
+
+## 自定义样式
+
+相比 `head` 引入，你可以在此处编写 `stylus` 文件，并使用主题已有的变量，且将编译进 `hexo-theme-yun.css` 中。
+
+> 新建 `source/_data/style` 文件夹，并再新建 `xxx.styl`，开始编写你的自定义样式。
+
+譬如通过以下方式将导入你的 `source/_data/style` 下所有的 `.styl` 文件。
+
+```yaml
+custom:
+  style: source/_data/style/*
 ```
 
 ## 更多配置

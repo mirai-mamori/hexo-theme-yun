@@ -25,6 +25,13 @@ module.exports = {
       },
     ],
     ["meta", { name: "msapplication-TileColor", content: "#6200ee" }],
+    [
+      "script",
+      {
+        async: true,
+        src: "//at.alicdn.com/t/font_1140697_stqaphw3j4.js",
+      },
+    ],
   ],
   title: "Hexo-Theme-Yun",
   locales: {
@@ -38,7 +45,7 @@ module.exports = {
     },
   },
   themeConfig: {
-    logo: "/logo.gif",
+    logo: "/yun.svg",
     nextLinks: true,
     prevLinks: true,
     repo: "YunYouJun/hexo-theme-yun",
@@ -56,7 +63,7 @@ module.exports = {
         nav: [
           { text: "使用指南", link: "/guide/" },
           { text: "示例站点", link: "/demo.html" },
-          { text: "赞助名单", link: "/sponsor.html" },
+          { text: "赞助名单", link: "https://sponsors.yunyoujun.cn" },
         ],
         sidebar: {
           "/": [
@@ -66,7 +73,9 @@ module.exports = {
             "guide/page",
             "guide/third-party-support",
             "guide/additional-package-support",
+            "guide/icon",
             "guide/faq",
+            "guide/migrate",
           ],
         },
       },
@@ -76,7 +85,7 @@ module.exports = {
         nav: [
           { text: "Guide", link: "/guide/" },
           { text: "Demo", link: "/demo.html" },
-          { text: "Sponsor", link: "/sponsor.html" },
+          { text: "Sponsor", link: "https://sponsors.yunyoujun.cn" },
         ],
         sidebar: {
           "/en/": [
@@ -86,6 +95,7 @@ module.exports = {
             "guide/page",
             "guide/third-party-support",
             "guide/additional-package-support",
+            "guide/icon",
             "guide/faq",
           ],
         },

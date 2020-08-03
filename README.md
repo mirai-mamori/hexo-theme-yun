@@ -1,6 +1,7 @@
 # Hexo-Theme-Yun
 
 [![Docs](https://github.com/YunYouJun/hexo-theme-yun/workflows/docs/badge.svg)](https://yun.yunyoujun.cn)
+[![Netlify](https://img.shields.io/netlify/4acb3c9b-fbcd-488e-be70-18942eb2669f)](https://yunyoujun.netlify.app)
 [![GitHub package.json dependency version (dev dep on branch)](https://img.shields.io/github/package-json/dependency-version/YunYouJun/yunyoujun.github.io/hexo/hexo)](https://hexo.io)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/YunYouJun/hexo-theme-yun)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/YunYouJun/hexo-theme-yun)
@@ -13,7 +14,7 @@
 
 > A light & fast & lovely hexo theme.
 
-- Docs: <https://yun.yunyoujun.cn>
+- Docs | 一份详细的使用文档: <https://yun.yunyoujun.cn>
 
 ![index-preview.jpg](https://i.loli.net/2020/03/23/bTmpQe6tgf35nj2.jpg)
 
@@ -75,7 +76,7 @@ If you are using this theme, welcome to leave your site in [Demo Sites | Example
       </a>
     </td>
     <td>
-      <a href="https://www.addesp.com/" target="_blank">
+      <a href="https://sblog.addesp.com/" target="_blank">
         <img width="80px" src="https://www.addesp.com/avatar.jpg"/>
         <br />
         <sub title="记录回忆，分享笔记。">ADD-SP的博客</sub>
@@ -112,7 +113,7 @@ If you are using this theme, welcome to leave your site in [Demo Sites | Example
       </a>
     </td>
     <td>
-      <a href="https://gloomym.github.io/" target="_blank">
+      <a href="http://www.romastar.cn/" target="_blank">
         <img width="80px" src="https://personalblog-1301685299.cos.ap-nanjing.myqcloud.com/MyBlog-Images/Personal-Info/Avatar.jpg"/>
         <br />
         <sub title="记录我的生活经历以及学习历程~~">柠檬君的小站</sub>
@@ -133,10 +134,68 @@ If you are using this theme, welcome to leave your site in [Demo Sites | Example
       </a>
     </td>
     <td>
-      <a href="https://misaki.page/" target="_blank">
-        <img width="80px" src="https://misaki.page/avatar-512x512.png"/>
+      <a href="https://lymtics.top" target="_blank">
+        <img width="80px" src="https://gitee.com/Renen/blogpic/raw/master/sources/BlogAvatar.jpg"/>
         <br />
-        <sub title="疲惫生活中总要有些温暖梦想">西地兰的忧郁</sub>
+        <sub title="Love You More Than I Can Say.">Lymtics</sub>
+      </a>
+    </td>
+  </tr>
+  <tr align="center">
+    <td>
+      <a href="https://qingxu.ga" target="_blank">
+        <img width="80px" src="https://cdn.jsdelivr.net/gh/huanruomengyun/PicGoBed/blog/ass/avatar.png"/>
+        <br />
+        <sub title="人生如逆旅，我亦是行人">Qingxu's Blog</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://myperfect.work" target="_blank">
+        <img width="80px" src="https://myperfect.work/image/20161015094748_YFfPV.jpeg"/>
+        <br />
+        <sub title="记录学习历程，每天进步一点点！">南楼画角的小站</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://copur.xyz/" target="_blank">
+        <img width="80px" src="https://q1.qlogo.cn/g?b=qq&nk=1935576264&s=100"/>
+        <br />
+        <sub title="记录学习历程，每天进步一点点！">乐得自在的小破站</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://blog.zjgsujz.cn" target="_blank">
+        <img width="80px" src="https://cdn.jsdelivr.net/gh/Pakchoi1/image-host/blog/avatar.jpg"/>
+        <br />
+        <sub title="it萌新的进阶之路">小白菜的博客</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://edenjohnson.me" target="_blank">
+        <img width="80px" src="https://cdn.jsdelivr.net/gh/MEMZSONBILI/PicGoBed@master/images/20200625174516.jpg"/>
+        <br />
+        <sub title="去探索，去发现">Eden瞎写小屋</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://justwb.me" target="_blank">
+        <img width="80px" src="https://justwb.me/avatar.jpeg"/>
+        <br />
+        <sub title="D.C.Forever">琴社迷思</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://chitang233.github.io/" target="_blank">
+        <img width="80px" src="https://s1.ax1x.com/2020/06/27/N63K8e.jpg"/>
+        <br />
+        <sub title="只是一个普通的初中生罢了">池某的小博客</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://xmuli.tech" target="_blank">
+        <img width="80px" src="https://cdn.jsdelivr.net/gh/xmuli/xmuliPic@pic/2020/xmuli_yj_256px.png"/>
+        <br />
+        <sub title="与子偕臧">偕臧的小站</sub>
       </a>
     </td>
   </tr>
@@ -162,7 +221,7 @@ Deprecated highlight.js in Hexo.
 
 ## Usage
 
-```yml
+```yaml
 # root/_config.yml
 theme: yun
 ```
