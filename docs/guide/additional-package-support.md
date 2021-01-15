@@ -54,6 +54,8 @@ social:
 
 原插件的置顶功能等了很久还没有合并。[#26](https://github.com/hexojs/hexo-generator-index/pull/26)
 
+（[1.1](https://github.com/hexojs/hexo-generator-index/pull/56) 快了）
+
 ```sh
 npm uninstall hexo-generator-index --save
 npm install hexo-generator-index-pin-top --save
@@ -166,9 +168,10 @@ abbrlink:
 
 ## 标签云（词云）
 
-在 `yun.yml` 中开启在侧边栏下方显示
+在 `yun.yml` 中设置，在标签页中使用彩色词云替代原生标签云。
 
-- `enable`: 开启后，将在标签页显示彩色词云
+- `enable`: 是否开启
+- `height`: 词云高度
 
 ```yaml
 wordcloud:
@@ -301,9 +304,13 @@ embeddedVideoTransformer: function() {
 }
 ```
 
-## KaTeX
+## 数学公式
+
+### KaTeX
 
 在文章中显示一些简单的数学公式，使用 [KaTeX](katex.or) 实现。具体方法请参见[官方文档](https://katex.org/)。
+
+> 其主要采用 CDN 的方式实现。
 
 - `copy_tex`: 复制 katex 文本，默认开启
 - `global`: 如果你想要在全局页面使用 `KaTex`，（譬如首页的文章摘要），那么你可以开启它。（当然，这也意味着你的页面每次需要加载更多的资源。）
@@ -326,8 +333,22 @@ katex: true
 
 你可以使用如下方式包裹公式。
 
+如下包裹，公式将被居中展示。
+
+```latex
+$$ E = mc^2 $$
+\[ E = mc^2 \]
+```
+
+如下包裹，公式将以行内形式展示。
+
+```latex
+$E = mc^2$
+\( E = mc^2 \)
+```
+
 ::: tip
-注意，在 Markdown 文件中直接书写时，你需要多一个 `\` 来转译 `\`。
+注意，在 Markdown 文件中直接书写时，你需要多一个 `\` 来转译 `\`。（或者使用 `$E=mc^2$` 的方式）
 
 使用 `\\[ E = mc^2 \\]` 而不是 `\[ E = mc^2 \]`。
 
@@ -343,31 +364,34 @@ katex: true
 
 :::
 
-如下包裹，公式将被居中展示。
-
-```latex
-$$ E = mc^2 $$
-\[ E = mc^2 \]
-```
-
-如下包裹，公式将以行内形式展示。
-
-```latex
-\( E = mc^2 \)
-```
-
 > 你可以访问 [Yun Test](https://www.yunyoujun.cn/yun/) 来查看实际效果。
 > 你可能需要一点时间来等待 `KaTeX` 库的加载，或刷新重试。
 
-## 其他可用插件推荐
+### [hexo-math](https://github.com/hexojs/hexo-math)
 
-以下的插件配置与使用均与主题无关，你可以自行参考其文档配置。
+此外你还可以使用 [hexo-math](https://github.com/hexojs/hexo-math) 此类的插件进行预处理。
 
-> 因为当你想要一些主题并未提供的功能时，它们实际上可以直接通过插件来实现。
+hexo-math 支持 [KaTeX](https://katex.org/) 与 [MathJax](https://www.mathjax.org/)，使用方式如下。（更多请参见官方文档）
 
-### [hexo-blog-encrypt](https://github.com/MikeCoder/hexo-blog-encrypt)
+> 与主题自身支持的 KaTeX 区别是，主题采用 CDN 在页面加载的时候才开始解析，而此插件则预先解析生成为对应的静态文档。
 
-你可以使用它来加密一些私密的文章页面。
+```md
+{% katex %}
+c = \pm\sqrt{a^2 + b^2}
+{% endkatex %}
+```
+
+### [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax)
+
+与 hexo-math 相比你可以使用 `$...$` 的方式来使用公式。默认支持的渲染器为 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)。
+
+```md
+$$
+i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi
+$$
+```
+
+> Hexo 默认安装的渲染器一般为[hexo-renderer-marked](https://github.com/hexojs/hexo-renderer-marked)，因此你可能需要注意一些转译问题。（如 `*` 需要使用 `\*` 等。）
 
 ## pjax
 
@@ -377,3 +401,27 @@ $$ E = mc^2 $$
 pjax:
   enable: true
 ```
+
+## 其他可用插件推荐
+
+以下的插件配置与使用均与主题无关，你可以自行参考其文档配置。
+
+> 因为当你想要一些主题并未提供的功能时，它们实际上可以直接通过插件来实现。
+
+### [hexo-tag-common](https://github.com/YunYouJun/hexo-tag-common)
+
+扩展的 hexo 标签语法。
+
+譬如实现 Tabs 功能。（[Demo](https://www.yunyoujun.cn/yun/tag-common.html)）
+
+后续可能会添加更多常用标签。
+
+### [hexo-widget-tree](https://github.com/YunYouJun/hexo-widget-tree)
+
+挂件形式，通过树状菜单查看文章。
+
+> 如果需要 PJAX 效果，开启主题 PJAX 即可。
+
+### [hexo-blog-encrypt](https://github.com/MikeCoder/hexo-blog-encrypt)
+
+你可以使用它来加密一些私密的文章页面。

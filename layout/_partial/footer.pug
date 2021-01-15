@@ -1,7 +1,7 @@
 footer#footer.sidebar-translate
   if theme.footer.beian.enable
     .beian
-      a(rel='noopener' href='http://www.beian.miit.gov.cn' target='_blank') #{theme.footer.beian.icp}
+      a(rel='noopener' href='https://beian.miit.gov.cn/' target='_blank') #{theme.footer.beian.icp}
 
   .copyright
     - var nowYear = date(Date.now(), "YYYY")
@@ -31,7 +31,7 @@ footer#footer.sidebar-translate
         span.moe-text!=theme.footer.live_time.suffix
       script.
         function blog_live_time() {
-          window.setTimeout(blog_live_time, 1000);
+          setTimeout(blog_live_time, 1000);
           const start = new Date('#{theme.footer.live_time.start_time}');
           const now = new Date();
           const timeDiff = (now.getTime() - start.getTime());

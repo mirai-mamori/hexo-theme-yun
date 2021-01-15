@@ -1,11 +1,11 @@
 # Hexo-Theme-Yun
 
 [![Docs](https://github.com/YunYouJun/hexo-theme-yun/workflows/docs/badge.svg)](https://yun.yunyoujun.cn)
-[![Netlify](https://img.shields.io/netlify/4acb3c9b-fbcd-488e-be70-18942eb2669f)](https://yunyoujun.netlify.app)
-[![GitHub package.json dependency version (dev dep on branch)](https://img.shields.io/github/package-json/dependency-version/YunYouJun/yunyoujun.github.io/hexo/hexo)](https://hexo.io)
+[![GitHub package.json dependency version (dev dep on branch)](https://img.shields.io/github/package-json/dependency-version/YunYouJun/yunyoujun.github.io/hexo/hexo?logo=hexo)](https://hexo.io)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/YunYouJun/hexo-theme-yun)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/YunYouJun/hexo-theme-yun)
-[![QQ Group](https://img.shields.io/badge/qq%20group-389401003-12B7F5)](https://shang.qq.com/wpa/qunwpa?idkey=3bd19a05aaccb2b60c396295c8617b3a9e667821a495e8cd7e1698ff95ab61c6)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/YunYouJun/hexo-theme-yun?logo=vs-code)
+[![QQ Group](https://img.shields.io/badge/QQ%20Group-389401003-12B7F5?logo=tencent-qq)](https://shang.qq.com/wpa/qunwpa?idkey=3bd19a05aaccb2b60c396295c8617b3a9e667821a495e8cd7e1698ff95ab61c6)
+[![Gitter](https://badges.gitter.im/YunYouJun/hexo-theme-yun.svg)](https://gitter.im/YunYouJun/hexo-theme-yun?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![SATA License](https://img.shields.io/badge/license-SATA-green.svg)](https://github.com/zTrix/sata-license)
 
 <p align="center">
@@ -14,11 +14,21 @@
 
 > A light & fast & lovely hexo theme.
 
-- Docs | 一份详细的使用文档: <https://yun.yunyoujun.cn>
+- PV: [Yun v1.0 - Strato | bilibili](https://www.bilibili.com/video/BV17t4y1S7tz)
+- Coding 镜像: [hexo-theme-yun](https://yunyoujun.coding.net/public/hexo-theme-yun/hexo-theme-yun/git/files)
+
+## Docs
+
+一份详细的使用文档
+
+- Docs for `dev`: <https://yun.yunyoujun.cn>
+- Docs for `master`: <https://hexo-theme-yun.vercel.app/>
 
 ![index-preview.jpg](https://i.loli.net/2020/03/23/bTmpQe6tgf35nj2.jpg)
 
 ## Demo Sites
+
+[![Netlify](https://img.shields.io/netlify/4acb3c9b-fbcd-488e-be70-18942eb2669f?logo=netlify)](https://yunyoujun.netlify.app)
 
 If you are using this theme, welcome to leave your site in [Demo Sites | Example Site](https://github.com/YunYouJun/hexo-theme-yun/issues/3), and I will add it to the sample site below.
 
@@ -48,10 +58,10 @@ If you are using this theme, welcome to leave your site in [Demo Sites | Example
       </a>
     </td>
     <td>
-      <a href="https://blog.hehejun.cn" target="_blank">
-        <img width="80px" src="https://blog.hehejun.cn/img.jpg"/>
+      <a href="https://www.mle.moe" target="_blank">
+        <img width="80px" src="https://www.mle.moe/images/girl.jpeg"/>
         <br />
-        <sub title="世界に忘れられた~">呵呵君的博客</sub>
+        <sub title="ヾ(❀╹◡╹)ﾉ~">MleMoe</sub>
       </a>
     </td>
     <td>
@@ -143,13 +153,6 @@ If you are using this theme, welcome to leave your site in [Demo Sites | Example
   </tr>
   <tr align="center">
     <td>
-      <a href="https://qingxu.ga" target="_blank">
-        <img width="80px" src="https://cdn.jsdelivr.net/gh/huanruomengyun/PicGoBed/blog/ass/avatar.png"/>
-        <br />
-        <sub title="人生如逆旅，我亦是行人">Qingxu's Blog</sub>
-      </a>
-    </td>
-    <td>
       <a href="https://myperfect.work" target="_blank">
         <img width="80px" src="https://myperfect.work/image/20161015094748_YFfPV.jpeg"/>
         <br />
@@ -178,13 +181,6 @@ If you are using this theme, welcome to leave your site in [Demo Sites | Example
       </a>
     </td>
     <td>
-      <a href="https://justwb.me" target="_blank">
-        <img width="80px" src="https://justwb.me/avatar.jpeg"/>
-        <br />
-        <sub title="D.C.Forever">琴社迷思</sub>
-      </a>
-    </td>
-    <td>
       <a href="https://chitang233.github.io/" target="_blank">
         <img width="80px" src="https://s1.ax1x.com/2020/06/27/N63K8e.jpg"/>
         <br />
@@ -198,10 +194,26 @@ If you are using this theme, welcome to leave your site in [Demo Sites | Example
         <sub title="与子偕臧">偕臧的小站</sub>
       </a>
     </td>
+    <td>
+      <a href="https://www.rogeroger.net" target="_blank">
+        <img width="80px" src="https://rogeroger.oss-cn-beijing.aliyuncs.com/img/rogeryu.jpeg"/>
+        <br />
+        <sub title="啊啊啊啊啊啊啊啊">ROGEROGER</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://leostudiooo.github.io" target="_blank">
+        <img width="80px" src="https://avatars0.githubusercontent.com/u/35419343"/>
+        <br />
+        <sub title="恰同学少年，风华正茂；书生意气，挥斥方遒。">LeoStudio</sub>
+      </a>
+    </td>
   </tr>
 </table>
 
 ## Install
+
+In your hexo folder:
 
 ```sh
 git clone -b master https://github.com/YunYouJun/hexo-theme-yun themes/yun
@@ -212,12 +224,6 @@ If you don't have jade & stylus renderer:
 ```sh
 npm install hexo-render-pug hexo-renderer-stylus
 ```
-
-### Plugins
-
-Deprecated highlight.js in Hexo.
-
-> More info [here](https://yun.yunyoujun.cn/guide/config.html#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE).
 
 ## Usage
 
@@ -232,7 +238,7 @@ More info [here](https://yun.yunyoujun.cn/guide/config.html).
 
 ### Upgrade
 
-You just need:
+You just need to execute:
 
 ```sh
 cd themes/yun
@@ -241,20 +247,21 @@ git pull
 
 ## [About](https://yun.yunyoujun.cn/guide/about.html)
 
+We use [SATA License](https://github.com/zTrix/sata-license).
+
+> You don’t know what this means? In short, if you use this theme, you need to Star this repo non-stop, and then you can use it anyway you like.
+
 本主题采用 [SATA License](https://github.com/zTrix/sata-license)。
 
 > 你不知道这代表什么？简单来说，就是如果你使用了该主题，你需要马不停蹄地点一个 Star，接下来你便可以随意使用它。
 
-## Contribue
+## Contribute
 
-如果你想要为 Yun 添加你想要的功能，你可以先开启 `Feature Request` 类型 Issue，描述你想要添加的功能。
-
-在确定该功能值得加入后，再进行开发工作，提交 PR。
+Welcome! However, if the job is heavy, you should use an Issue called 「Feature Request」 to ask if the feature should be implemented.
 
 ## Feedback
 
+You are welcome to use [Issue](https://github.com/YunYouJun/hexo-theme-yun/issues) to ask questions and give suggestions.
+Of course, you need to read the [documentation](https://yun.yunyoujun.cn/en/) firstly.
+
 有问题和建议欢迎提 [Issue](https://github.com/YunYouJun/hexo-theme-yun/issues)，谢谢！（在此之前，请确保您已仔细阅读[文档](https://yun.yunyoujun.cn)。）
-
-您也可以加入 [QQ 群](https://shang.qq.com/wpa/qunwpa?idkey=3bd19a05aaccb2b60c396295c8617b3a9e667821a495e8cd7e1698ff95ab61c6)（389401003）进行反馈与讨论。
-
-> 如果是通用的问题（如 BUG 反馈，新功能建议），最好在 Issue 中进行反馈，以便其他朋友参与讨论，减少重复。

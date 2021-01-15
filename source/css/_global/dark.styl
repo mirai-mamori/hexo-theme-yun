@@ -27,18 +27,25 @@ $banner-char-bg-color = black;
 
 // sidebar
 $sidebar-bg-image = hexo-config('sidebar.dark_bg_image');
-$background-image = url($sidebar-bg-image);
 
 .sidebar {
   background-color: rgba($dark-primary-color, 0.95);
-  background-image: $background-image;
+
+  if ($sidebar-bg-image) {
+    background-image: url($sidebar-bg-image);
+  } else {
+    background-image: none;
+  }
 }
 
 // search
-$search-bg-image = hexo-config('search.dark_bg_image');
+// if you enable modal, do not need bg_image
+if (!hexo-config('search.modal')) {
+  $search-bg-image = hexo-config('search.dark_bg_image');
 
-.search-popup {
-  background-image: url($search-bg-image);
+  .search-popup {
+    background-image: url($search-bg-image);
+  }
 }
 
 // post

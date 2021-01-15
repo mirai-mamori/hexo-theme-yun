@@ -1,9 +1,17 @@
+const { parse } = require("url");
+
 hexo.extend.helper.register("yun_config", function() {
   let { config, theme, yun_version, __ } = this;
   let exportConfig = {
+    hostname: parse(config.url).hostname || config.url,
     root: config.root,
     title: theme.banner.title || config.title,
     version: yun_version,
+    mode: theme.mode,
+    copycode: theme.codeblock.copy_btn,
+    page: {
+      isPost: this.is_post(),
+    },
   };
 
   // anonymous_image
@@ -51,6 +59,7 @@ hexo.extend.helper.register("yun_config", function() {
     };
   }
 
+  // 点击效果
   if (theme.fireworks && theme.fireworks.enable) {
     exportConfig.fireworks = {
       colors: theme.fireworks.colors,

@@ -1,5 +1,7 @@
 # Additional Dependency Library Support
 
+The difference with third-party support is that most of the functions here are implemented by installing plug-ins or introducing CDN, and they are simply adapted by themes.
+
 ## Word Count
 
 Install [hexo-wordcount](https://github.com/willin/hexo-wordcount)
@@ -87,13 +89,13 @@ top: 2
 At this time, the articles of `top: 2` will be arranged above the articles of `top: 1`.
 
 ::: tip
-You can also set the sorting according to `updated`, and then set the date of `updated` to a future date to achieve the sticky effect.
+You can also set the sorting according to `updated`, and then set the date of `updated` to a future time to achieve the sticky effect.
 :::
 
 ## live2d
 
-There is no need to modify the theme to adding live2d, nor does it need to configure the theme. It is just a plug-in for Hexo. You can configure it in `_config.yml` in the root directory.
-The reason it appears here is to illustrate the recommended settings (in short, it is best to use CDN).
+There is no need to modify the theme to adding live2d, nor does it need to to be configured. It is just a plug-in for Hexo. You can configure it in `_config.yml` in the root directory.
+The reason it appears here is to illustrate the recommended settings (in short, it is the best to use CDN).
 
 Install [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
 
@@ -133,9 +135,22 @@ live2d:
   #   hitokoto: true
 ```
 
+## Tag Cloud (Word Cloud)
+
+Config in `yun.yml, use colorful word cloud instead of native tag cloud.
+
+- `enable`: enable word cloud
+- `height`: set the height for word cloud
+
 ## player
 
 ### [hexo-tag-aplayer](https://github.com/MoePlayer/hexo-tag-aplayer)
+
+Install [hexo-tag-aplayer](https://github.com/MoePlayer/hexo-tag-aplayer)
+
+```sh
+npm install hexo-tag-aplayer
+```
 
 > See [Official Document](https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md)
 
@@ -150,16 +165,16 @@ aplayer:
 ```
 
 ::: tip
-If you find that Aplayer sometimes introduces header files repeatedly in irrelevant files. Remember to turn off automatic script insertion.
+If you find that the Aplayer sometimes introduces header files repeatedly in irrelevant files, remember to turn off the automatic script insertion.
 
-> [Question of repeatedly loading Aplayer.js resource script] (https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md#%E9%87%8D%E5% A4% 8D% E8% BD% BD% E5% 85% A5-aplayerjs-% E8% B5% 84% E6% BA% 90% E8% 84% 9A% E6% 9C% AC% E9% 97% AE% E9 % A2% 98)
+> [Duplicate APlayer.JS loading](https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/README.md#duplicate-aplayerjs-loading)
 
 ```yaml
 aplayer:
   asset_inject: false
 ```
 
-Then decide at the head of the article whether to enable `aplayer`:
+Then decide whether to enable `aplayer` at the head of the article:
 
 ```yaml {3}
 ---
@@ -182,6 +197,46 @@ Insert a song from NetEase Cloud Music
 
 ```md
 {% meting "497572729" "netease" "song" "theme: # C20C0C"%}
+```
+
+### Global Music Player
+
+You can set it global enable in `yun.yml`.
+
+- `meting`: enable [meting](https://github.com/metowolf/MetingJS), whether to introduce meting resources (pay attention to the difference between this and `widget`)
+- `widget`: set `widget.enable` `true` to enable global player (aplayer.global must be `true`)
+  - `meting.enable`: whether to open meting for global widget. When open, it will load `option`; When close, will use cutsom `audio`.
+  - `audio`: default config can be referred. More info see [Official Documentation](https://aplayer.js.org/#/home)。
+
+Open [pjax](#pjax), it can realize that the music player is not interrupted when switching pages. (In order to load the music player correctly, when there is a music player in the article page that you switch to, `Meting` will reload.)
+
+```yaml
+aplayer:
+  global: false
+  meting: true
+  # https://github.com/metowolf/MetingJS/tree/v1.2#option
+  widget:
+    enable: false
+    autoplay: false
+    # theme: "#2980b9"
+    loop: all
+    order: list
+    preload: auto
+    volume: 0.7
+    mutex: true
+    lrcType: 0
+    listFolded: false
+    listMaxHeight: 340px
+    audio:
+      - name: 星宿计时
+        artist: 杉田朗/洛天依
+        url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/audio/star-timer.mp3
+        cover: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0.jpg
+    meting:
+      enable: true
+      id: 308168565
+      server: netease
+      type: playlist
 ```
 
 Since `hexo-tag-aplayer` is so fragrant, I decided to remove the original media package script. Students who are really in need can add it by themselves.
@@ -219,7 +274,9 @@ embeddedVideoTransformer: function () {
 }
 ```
 
-## KaTeX
+## Math Formula
+
+### KaTeX
 
 Some simple mathematical formulas are shown in the article, using [KaTeX](katex.or). For details, please refer to [Official Document](https://katex.org/).
 
@@ -244,14 +301,28 @@ katex: true
 
 You can wrap the formula in the following way.
 
+In the following, the formula will be displayed in the center.
+
+```latex
+$$ E = mc^2 $$
+\[ E = mc^2 \]
+```
+
+In the following, the formula will be displayed in line.
+
+```latex
+$E = mc^2$
+\( E = mc^2 \)
+```
+
 ::: tip
 Note that when writing directly in a Markdown file, you need an extra `\` to translate `\`.
 
 Use `\\[E = mc ^ 2 \\]` instead of `\[E = mc ^ 2 \]`.
 
-If you have too many characters that need to be translated, you can directly wrap it with HTML tags (internal characters will not be parsed as Markdown), without using multiple `\` to translate.
+If you have too many characters that need to be translated, you can directly wrap it with HTML tags (internal characters will not be parsed as Markdown) without using multiple `\` to translate. (Or use `$E=mc^2$`)
 
-for example:
+For example:
 
 ```html
 <div>
@@ -276,3 +347,62 @@ As shown in the following package, the formula will be displayed in line.
 
 > You can visit [Yun Test](https://www.yunyoujun.cn/yun/) to see the actual effect.
 > You may need some time to wait for the `KaTeX` library to load, or refresh and try again.
+
+### [hexo-math](https://github.com/hexojs/hexo-math)
+
+You can also use plugins like [hexo-math](https://github.com/hexojs/hexo-math) for preprocessing.
+
+hexo-math supports [KaTeX](https://katex.org/) and [MathJax](https://www.mathjax.org/) and is used as follows. (See official documentation for more)
+
+> The difference with the theme's own support for KaTeX is that the theme uses a CDN that only starts parsing when the page is loaded, whereas this plugin pre-generates the content into a static document.
+
+```md
+{% katex %}
+c = \pm\sqrt{a^2 + b^2}
+{% endkatex %}
+```
+
+### [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax)
+
+Compared with hexo-math, you can use the formula `$...$`. The default supported renderer is [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc).
+
+```md
+$$
+i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi
+$$
+```
+
+> Hexo's default installed renderer is generally [hexo-renderer-marked](https://github.com/hexojs/hexo-renderer-marked), so you may need to be aware of some translation issues. (e.g. `*` needs to be used for \*` etc.)
+
+## pjax
+
+Use [pjax](https://github.com/MoOx/pjax)。
+
+```yaml
+pjax:
+  enable: true
+```
+
+## Other Recommended Plugins
+
+The following plug-in configuration and usage have nothing to do with the theme, you can refer to its documentation configuration yourself.
+
+> Because when you want some features that the theme does not provide, they can actually be implemented directly through plugins.
+
+### [hexo-tag-common](https://github.com/YunYouJun/hexo-tag-common)
+
+Extended hexo tag syntax.
+
+For example, Tabs function.（[Demo](https://www.yunyoujun.cn/yun/tag-common.html)）
+
+More common tags may be added later.
+
+### [hexo-widget-tree](https://github.com/YunYouJun/hexo-widget-tree)
+
+Widget, view articles through the tree menu.
+
+> If you need a PJAX effect, enable theme PJAX.
+
+### [hexo-blog-encrypt](https://github.com/MikeCoder/hexo-blog-encrypt)
+
+You can use it to encrypt some private article pages.

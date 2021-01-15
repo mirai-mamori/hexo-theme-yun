@@ -1,6 +1,6 @@
 # ---------------
-# mode: light | dark | auto
-mode: light
+# mode: light | dark | auto | time
+mode: auto
 
 # Theme color for customize
 # Notice: color value must in double quotes: "#000000"
@@ -26,7 +26,8 @@ favicon: /yun.svg
 # Posts / Categories / Tags in sidebar.
 sidebar:
   src: /js/sidebar.js
-  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-1.jpg
+  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn@master/img/bg/alpha-stars-timing-1.webp
+  # dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn@master/img/bg/dark-alpha-stars-timing-1.webp
   bg_position: bottom 1rem center
   tagcloud:
     enable: false
@@ -47,9 +48,9 @@ social:
     link: /atom.xml # config.feed.path
     icon: icon-rss-line
     color: orange
-  - name: QQ 群
+  - name: QQ 群 389401003
     # https://isux.tencent.com/wp-content/uploads/2016/05/20160512101222609.pdf
-    link: https://shang.qq.com/wpa/qunwpa?idkey=c929e704022704d8cced9ec355d44a3fa7ad34aea12cef1de03d75d3d7d5b059
+    link: https://qm.qq.com/cgi-bin/qm/qr?k=epvxdq1sknJe9JMj6J1LsBw4a6cI_2ln&jump_from=webapi
     icon: icon-qq-line
     color: "#12B7F5"
   - name: GitHub
@@ -106,6 +107,12 @@ social:
     icon: icon-send-plane-2-line
     color: black
 
+codeblock:
+  copy_btn: true
+  prismjs:
+    light: default
+    dark: tomorrow
+
 # Extra links
 pages:
   - name: 我的小伙伴们
@@ -135,6 +142,10 @@ avatar:
   # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
   opacity: 1
   mickey_mouse: false
+  status:
+    enable: false
+    emoji: 😊
+    message: 永远相信美好的事情即将发生
 
 # main menu navigation
 menu:
@@ -202,6 +213,9 @@ types:
   notion:
     color: black
     icon: icon-notion
+  twitter:
+    color: "#1da1f2"
+    icon: icon-twitter-line
   wechat:
     color: "#1AAD19"
     icon: icon-wechat-2-line
@@ -217,7 +231,7 @@ types:
 
 # post_card
 post_card:
-  opacity: 0.8
+  opacity: 0.9
 
 # link
 # -------
@@ -252,7 +266,7 @@ pjax:
 css:
   - /css/hexo-theme-yun.css
 
-# scripts loaded in the end of the body
+# scripts loaded in the end of the <head>
 js:
   - /js/utils.js
   - /js/hexo-theme-yun.js
@@ -270,59 +284,17 @@ cdn:
   pre: ""
   # pre: https://cdn.jsdelivr.net/gh/YunYouJun/yunyoujun.github.io
   css:
-    yun-markdown-css: https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.16/dist/yun/yun-markdown.min.css
+    yun-markdown-css: https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.22/dist/yun/yun-markdown.min.css
     # github-markdown-css: https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.css
-    # planet-markdown-css: https://cdn.jsdelivr.net/npm/star-markdown-css/dist/planet/planet-markdown.min.css
-    # blood-markdown-css: https://cdn.jsdelivr.net/npm/star-markdown-css/dist/blood/blood-common.min.css
   js:
     base:
     async:
-      iconfont: //at.alicdn.com/t/font_1140697_stqaphw3j4.js
+      iconfont: //at.alicdn.com/t/font_1140697_ed8vp4atwoj.js
     defer:
 
 # cdn for third-party library (alternative include)
+# please see in _vendors.yml
 vendors:
-  algolia_search: https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
-  instant_search: https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js
-  anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js
-  valine_js: https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js
-  minivaline_js: https://cdn.jsdelivr.net/npm/minivaline/dist/MiniValine.min.js
-  gitalk:
-    css: https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.css
-    js: https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js
-  scrollreveal: https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js
-  katex:
-    js: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js
-    css: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css
-    auto_render: https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.min.js
-    copy_tex:
-      css: https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.css
-      js: https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js
-  aplayer:
-    css: https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.css
-    js: https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js
-    meting: https://cdn.jsdelivr.net/npm/meting@1/dist/Meting.min.js
-  trianglify: https://cdn.jsdelivr.net/npm/trianglify@4/dist/trianglify.bundle.js
-  lightgallery:
-    css: https://cdn.jsdelivr.net/npm/lightgallery.js@latest/dist/css/lightgallery.min.css
-    js: https://cdn.jsdelivr.net/npm/lightgallery.js@latest/dist/js/lightgallery.min.js
-  pjax: https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js
-  crypto_js:
-    all: https://cdn.jsdelivr.net/npm/crypto-js@latest/crypto-js.js
-  wordcloud: https://cdn.jsdelivr.net/npm/wordcloud@1.1.1/src/wordcloud2.js
-  # https://github.com/SukkaW/DisqusJS
-  disqusjs:
-    css: https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css
-    js: https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js
-  revealjs:
-    css: https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css
-    js: https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js
-    plugin:
-      markdown: https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js
-      notes: https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js
-      highlight:
-        js: https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/highlight.js
-        monokai: https://cdn.jsdelivr.net/npm/reveal.js@4.0.2/plugin/highlight/monokai.css
 
 # UI
 banner:
@@ -350,7 +322,7 @@ font:
     family: "'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif"
     weight: 400
   monospace:
-    family: "'Source Code Pro', 'Courier New', Courier, Consolas, Monaco, monospace"
+    family: "'Source Code Pro', Consolas, Monaco, SFMono-Regular, 'Ubuntu Mono', Menlo, monospace"
 
 # custom your color in fireworks
 fireworks:
@@ -463,7 +435,7 @@ footer:
     enable: true
 
   # Beian icp information for Chinese users. In China, every legal website should have a beian icp in website footer.
-  # http://www.beian.miit.gov.cn
+  # https://beian.miit.gov.cn/
   beian:
     enable: false
     # icp: 苏ICP备xxxxxxxx号
@@ -514,120 +486,7 @@ say:
 # Example: https://say.elpsy.cn/sentences.json
 
 # Comments
-# -------
-comment:
-  enable: true
-  icon: icon-chat-3-line
-  tips:
-    - 点击按钮跳转 GitHub Issues 评论。
-    - 若没有本文 Issue，您可以使用 Comment 模版新建。
-
-# GitHub Issues Link Button
-# https://help.github.com/en/github/searching-for-information-on-github/searching-issues-and-pull-requests
-github_issues:
-  enable: true
-  username: YunYouJun
-  repository: yunyoujun.github.io
-  filters: is:issue
-
-# Valine
-# You can get your appid and appkey from https://leancloud.cn
-# More info available at https://valine.js.org
-# extend: https://github.com/DesertsP/Valine-Admin
-valine:
-  enable: false
-  appId: # your leancloud application appid
-  appKey: # your leancloud application appkey
-  placeholder: Just go go # comment box placeholder
-  avatar: # gravatar style
-  # meta:
-  #   - nick
-  #   - mail
-  #   - link
-  pageSize: 10 # pagination size
-  # lang: zh-CN
-  visitor: false
-  highlight: true
-  recordIP: false
-  # serverURLs:
-  # Emoji See: https://valine.js.org/emoji.html
-  # emojiCDN: //i0.hdslb.com/bfs/emote/
-  # emojiMaps:
-  #   tv_doge: 6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png
-  #   more...
-  enableQQ: true
-  # requiredFields:
-  #   - nick
-  #   - mail
-
-# MiniValine
-# You can get your appid and appkey from https://leancloud.cn
-# More info available at https://github.com/MiniValine/MiniValine
-minivaline:
-  enable: false
-  appId: # Your leancloud application appId
-  appKey: # Your leancloud application appKey
-  # mode: DesertsP # DesertsP or xCss # xCss Style mode needs to import fontawesome@5 https://github.com/YunYouJun/hexo-theme-yun/blob/dev/docs/guide/config.md#其他图标
-  # placeholder: Write a Comment # Comment box placeholder
-  # math: true # Support MathJax.
-  # md: true # Support Markdown.
-  # enableQQ: false # Enable QQ avatar API.
-  # NoRecordIP: false # Do not record commenter IP.
-  # visitor: true # Article reading statistics.
-  # maxNest: 6 # Sub-comment maximum nesting depth.
-  # pageSize: 6 # Pagination size.
-  # adminEmailMd5: de8a7aa53d07e6b6bceb45c64027763d # The MD5 of Admin Email to show Admin Flag.[Just Only DesertsP Style mode] 示例： Admin 邮箱的小写 MD5
-  # tagMeta: # The String Array of Words to show Flag.[Just Only xCss Style mode]
-  #   - 管理员 # 示例: master tag
-  #   - 小伙伴 # 示例: friends tag
-  #   - 访客   # 示例: 访客 tag
-  # master: # The MD5 String Array of master Email to show master Flag.[Just Only xCss Style mode]
-  #   - de8a7aa53d07e6b6bceb45c64027763d # 示例： master 邮箱的小写 MD5
-  # friends: # The MD5 String Array of friends Email to show friends Flag.[Just Only xCss Style mode]
-  #   - b5bd5d836c7a0091aa8473e79ed4c25e # 示例： friend 邮箱的小写 MD5
-  # MiniValine's display language depends on user's browser or system environment
-  # If you want everyone visiting your site to see a uniform language, you can set a force language value
-  # Available values: en  | zh-CN | (and many more)
-  # More i18n info: https://github.com/MiniValine/minivaline-i18n
-  # lang:
-  # Expression Url.
-  # https://github.com/MiniValine/MiniValine/blob/master/.github/FAQ.md#how-to-customize-emoticons
-  # emoticonUrl:
-  #   - https://cdn.jsdelivr.net/npm/alus@latest
-  #   - https://cdn.jsdelivr.net/gh/MiniValine/qq@latest
-  #   - https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@latest
-  #   - https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest
-  #   - https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest
-  #   - https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest
-
-# http://disqus.com/
-disqus:
-  enable: false
-  shortname: yunyoujun
-  count: false
-
-# https://github.com/SukkaW/DisqusJS
-disqusjs:
-  enable: false
-  shortname: yunyoujun
-  count: false
-  apikey:
-
-# https://livere.com/
-livere:
-  enable: false
-  uid:
-
-# https://gitalk.github.io/
-gitalk:
-  enable: false
-  clientID:
-  clientSecret:
-  repo:
-  owner:
-  admin:
-  id:
-  distractionFreeMode:
+# See config file in /data/_comments.yml.
 
 # Show Views / Visitors of the website / page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi
@@ -649,6 +508,7 @@ wordcount:
 
 # search
 search:
+  modal: true
   bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
   dark_bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/mountain-blur-30px.jpg
   # placeholder: 想要搜些什么？
@@ -690,6 +550,16 @@ google_tagmanager:
   enable: false
   id:
 
+# Show number of visitors of each article.
+# You can visit https://www.leancloud.cn to get AppID and AppKey.
+leancloud_visitors:
+  enable: false
+  app_id: # <your app id>
+  app_key: # <your app key>
+  # Required for apps from CN region
+  server_url: # <your server url>
+
+# That is it only render those page which has `katex: true` in Front-matter.
 # math fomula
 # https://katex.org/
 katex:

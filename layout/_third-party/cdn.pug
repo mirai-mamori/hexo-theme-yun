@@ -1,6 +1,6 @@
 if theme.font.cdn.enable
   each item in theme.font.cdn.lib
-    link(rel='stylesheet', href=item, media="none" onload="this.media='all'")
+    link(rel='stylesheet', href=item, media="print" onload="this.media='all'")
 
 if theme.cdn.css
   each item in theme.cdn.css
@@ -27,8 +27,8 @@ if theme.scrollreveal.enable
       })
     });
 
-if theme.katex.global
-  include ./katex.pug
+//- math support
+include ./math/index.pug
 
 if theme.aplayer.global
   include ./aplayer.pug
@@ -36,11 +36,9 @@ if theme.aplayer.global
 //- pjax
 if theme.pjax.enable
   include ./pjax.pug
+  script(src=theme.vendors.vue)
 
 if is_page() || is_post()
-  if page.katex && !theme.katex.global
-    include katex.pug
-
   if page.aplayer && !theme.aplayer.global
     include aplayer.pug
 
@@ -56,8 +54,7 @@ if is_page() || is_post()
         !1
       );
 
-
-
-
-
-
+//- prism
+if config.prismjs && config.prismjs.enable
+  link(id="light-prism-css", rel="stylesheet", href=theme.vendors.prismjs.themes[theme.codeblock.prismjs.light], media="(prefers-color-scheme: light)")
+  link(id="dark-prism-css", rel="stylesheet", href=theme.vendors.prismjs.themes[theme.codeblock.prismjs.dark], media="(prefers-color-scheme: dark)")

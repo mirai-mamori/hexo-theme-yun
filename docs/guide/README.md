@@ -14,9 +14,9 @@ hexo server
 
 > 更多信息请参见 [Hexo 官网](https://hexo.io/)
 
-有任何关于本主题的使用问题与建议，可以前往[此处](https://github.com/YunYouJun/hexo-theme-yun/issues)发起 Issue。
+有任何关于本主题的缺陷报告与功能建议，可以发起 [Issues](https://github.com/YunYouJun/hexo-theme-yun/issues)。
 
-你也可以加入 [QQ 群](https://shang.qq.com/wpa/qunwpa?idkey=3bd19a05aaccb2b60c396295c8617b3a9e667821a495e8cd7e1698ff95ab61c6)（389401003）进行反馈与讨论。
+如果您想要展示您的成果、或者还有其他相关的想法与问题，可前往 [Discussions](https://github.com/YunYouJun/hexo-theme-yun/discussions)。
 
 - [更新日志](https://github.com/YunYouJun/hexo-theme-yun/releases)
 
@@ -76,7 +76,7 @@ theme: yun
 采用约定大于配置的方式，您仅需在 `yun.yml` 中自定义您想要覆盖的配置，其余将自动与主题默认配置合并。（这样做也更方便日后的升级）
 
 > 你可以参考我的配置文件 [yun.yml - yunyoujun.github.io](https://github.com/YunYouJun/yunyoujun.github.io/blob/hexo/source/_data/yun.yml)，是不是很短。  
-> 这勉强也算本主题的一个优化功能，当然你选择全部覆盖也是没问题的。
+> 因为我开启了 `algolia`、`wordcount` 等需要在其他地方安装或额外配置的东西，所以如果你直接复制我的配置，记得删掉 `algolia_search` 和 `wordcount`字段。
 
 ::: tip
 如：

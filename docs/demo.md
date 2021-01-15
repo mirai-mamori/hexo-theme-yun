@@ -32,10 +32,10 @@ If you have already used this theme, you are welcome to leave your site at [Demo
       </a>
     </td>
     <td>
-      <a href="https://blog.hehejun.cn" target="_blank">
-        <img width="80px" src="https://blog.hehejun.cn/img.jpg"/>
+      <a href="https://www.mle.moe" target="_blank">
+        <img width="80px" src="https://www.mle.moe/images/girl.jpeg"/>
         <br />
-        <sub title="世界に忘れられた~">呵呵君的博客</sub>
+        <sub title="ヾ(❀╹◡╹)ﾉ~">MleMoe</sub>
       </a>
     </td>
     <td>
@@ -66,6 +66,7 @@ If you have already used this theme, you are welcome to leave your site at [Demo
         <sub title="记录回忆，分享笔记。">ADD-SP的博客</sub>
       </a>
     </td>
+
   </tr>
   <tr align="center">
     <td>
@@ -127,13 +128,6 @@ If you have already used this theme, you are welcome to leave your site at [Demo
   </tr>
   <tr align="center">
     <td>
-      <a href="https://qingxu.ga" target="_blank">
-        <img width="80px" src="https://cdn.jsdelivr.net/gh/huanruomengyun/PicGoBed/blog/ass/avatar.png"/>
-        <br />
-        <sub title="人生如逆旅，我亦是行人">Qingxu's Blog</sub>
-      </a>
-    </td>
-    <td>
       <a href="https://myperfect.work" target="_blank">
         <img width="80px" src="https://myperfect.work/image/20161015094748_YFfPV.jpeg"/>
         <br />
@@ -162,13 +156,6 @@ If you have already used this theme, you are welcome to leave your site at [Demo
       </a>
     </td>
     <td>
-      <a href="https://justwb.me" target="_blank">
-        <img width="80px" src="https://justwb.me/avatar.jpeg"/>
-        <br />
-        <sub title="D.C.Forever">琴社迷思</sub>
-      </a>
-    </td>
-    <td>
       <a href="https://chitang233.github.io/" target="_blank">
         <img width="80px" src="https://s1.ax1x.com/2020/06/27/N63K8e.jpg"/>
         <br />
@@ -179,7 +166,21 @@ If you have already used this theme, you are welcome to leave your site at [Demo
       <a href="https://xmuli.tech" target="_blank">
         <img width="80px" src="https://cdn.jsdelivr.net/gh/xmuli/xmuliPic@pic/2020/xmuli_yj_256px.png"/>
         <br />
-        <sub title="与子偕臧">偕臧的小站</sub>
+        <sub title="偕臧">偕臧</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://www.rogeroger.net" target="_blank">
+        <img width="80px" src="https://rogeroger.oss-cn-beijing.aliyuncs.com/img/rogeryu.jpeg"/>
+        <br />
+        <sub title="啊啊啊啊啊啊啊啊">ROGEROGER</sub>
+      </a>
+    </td>
+    <td>
+      <a href="https://leostudiooo.github.io" target="_blank">
+        <img width="80px" src="https://avatars0.githubusercontent.com/u/35419343"/>
+        <br />
+        <sub title="恰同学少年，风华正茂；书生意气，挥斥方遒。">LeoStudio</sub>
       </a>
     </td>
   </tr>

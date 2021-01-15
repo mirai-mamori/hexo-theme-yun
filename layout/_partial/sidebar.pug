@@ -6,7 +6,9 @@ a#menu-btn.sidebar-toggle.hty-icon-button
 .sidebar-toggle.sidebar-overlay
 
 aside.sidebar
-  script(defer, src=url_for(theme.cdn.pre + theme.sidebar.src))
+  //- can not be async
+  //- https://stackoverflow.com/questions/9237044/async-loaded-scripts-with-domcontentloaded-or-load-event-handlers-not-being-call
+  script(src=url_for(theme.cdn.pre + theme.sidebar.src))
   - var toc_content = toc(page.content, {list_number: theme.toc.list_number, max_depth: theme.toc.max_depth, min_depth: theme.toc.min_depth})
   if is_post()
     ul.sidebar-nav
@@ -16,17 +18,7 @@ aside.sidebar
         +icon('icon-passport-line')
 
   #site-overview-wrap.sidebar-panel(class= is_post() && toc_content.length > 1 ? '' : 'sidebar-panel-active')
-    .site-info(class=is_post() ? (theme.avatar.mickey_mouse ? 'mickey-mouse' : 'fix-top') : '')
-      if theme.avatar && theme.avatar.url
-        a.site-author-avatar(href=url_for('about/'), title=config.author)
-          img(width=96, loading='lazy', src=is_url(theme.avatar.url) ? theme.avatar.url : url_for(theme.cdn.pre + theme.avatar.url), alt=config.author)
-        .site-author-name
-          a(href=url_for('about/'))
-            | #{config.author}
-        a.site-name(href=url_for('about/site.html'))
-          | #{config.title}
-        sub.site-subtitle!=config.subtitle
-        .site-desciption!=config.description
+    include ./sidebar/info.pug
 
     nav.site-state
       a.site-state-item.hty-icon-button.icon-home(href=url_for(theme.menu.home.path), title=theme.menu.home.title || __('menu.home'))
@@ -72,7 +64,7 @@ aside.sidebar
           a.links-item.hty-icon-button(href=url_for(link.url), title=link.name, style='color:' + link.color)
             +icon(link.icon)
 
-    if theme.mode === 'auto'
+    if theme.mode === 'auto' || theme.mode === "time"
       br
       a#toggle-mode-btn.links-item.hty-icon-button(href='javascript:;' title="Mode" style='color: #f1cb64')
         +icon('icon-contrast-2-line')

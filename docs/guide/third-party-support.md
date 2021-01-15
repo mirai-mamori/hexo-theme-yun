@@ -8,6 +8,7 @@
 
 - `enable`: 默认开启（代表整体的评论区块，你开启任意类型评论系统都须保持其开启）
 - `tips`: 评论上方的提示，您可以使用数组的形式修改为任意的话（若不想显示，可以留空）
+- `candidates`: 候选评论系统，默认不启用。配置后可切换多个评论系统，默认第一位为默认显示的评论。（你须确保 `candidates` 中的评论对应 `enable` 已开启）
 
 ```yaml
 comment:
@@ -15,6 +16,9 @@ comment:
   tips:
     - 若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。
     - 若没有本文 Issue，您可以使用 Comment 模版新建。
+  candidates:
+    - valine
+    - utterances
 ```
 
 关于评论系统我简单进行过一些对比，希望能起到一些参考。
@@ -39,6 +43,54 @@ github_issues:
 在项目 `Settings -> Options -> Features -> Issues -> Set up templates` 中为 GitHub Issues 设置 Comment 模版，第一个创建评论的人可以根据这个模版创建 Issue。
 
 也可以参考我的 [comment.md](https://github.com/YunYouJun/yunyoujun.github.io/blob/hexo/.github/ISSUE_TEMPLATE/comment.md)。
+
+### GitHub Discussions
+
+> GitHub Discussions 是一个围绕开源项目为社区提供协作沟通的论坛。
+> [GitHub Discussions 快速入门](https://docs.github.com/cn/free-pro-team@latest/discussions/quickstart)
+
+```yaml
+github_discussions:
+  enable: true
+  username: YunYouJun
+  repository: yunyoujun.github.io
+```
+
+### [Gitalk](https://github.com/gitalk/gitalk)
+
+Gitalk 是一个基于 GitHub Issue 的评论插件。
+
+::: danger
+
+本主题不支持 Gitalk ，如果你真的想用，不妨自行添加或尝试一下 [utterances](https://utteranc.es/)。
+
+:::
+
+基于以下理由，v0.9.7 将移除 Gitalk。
+
+- 存在安全隐患，须授予公开项目读**写**权限
+- CSS 无独立命名空间（甚至覆盖了主题的 markdown 样式）
+- 无亮暗模式
+- 部分 z-index 过高不合理，超过 sidebar
+- 不支持重载以实现 pjax，[如何支持 pjax](https://github.com/gitalk/gitalk/issues/205)
+- ...
+
+最后我发现了 [utterances](https://utteranc.es/)，基本可以完美取代，所以决定彻底移除，今后大概也不会再加回来。
+
+### [utterances](https://utteranc.es/)
+
+一个轻量的基于 GitHub Issue 的评论插件。请求更少的权限，使用起来更为方便。（如果你打算使用 Gitalk，不妨尝试一下 utterances。）
+
+```yaml
+utterances:
+  enable: false
+  repo: owner/repo
+  issue-term: pathname
+  # label: comment
+  theme: github-light
+```
+
+> 记得配置成自己的仓库。
 
 ### [Disqus](https://disqus.com/)
 
@@ -65,30 +117,22 @@ disqus:
 
 - `apikey`: 必须，请参考 DisqusJS 文档 [配置 Disqus Application](https://github.com/SukkaW/DisqusJS#%E9%85%8D%E7%BD%AE-disqus-application)
 
+> 注释部分为非必须参数。
+
 ```yaml
 disqusjs:
   enable: false
   shortname: yunyoujun
-  count: false
-  apikey:
-```
-
-### [Gitalk](https://github.com/gitalk/gitalk)
-
-Gitalk 是一个基于 GitHub Issue 的评论插件。（有安全隐患，慎重使用，详情见上方文章）
-
-> 不支持 PJAX：[如何支持 pjax](https://github.com/gitalk/gitalk/issues/205)
-
-```yaml
-gitalk:
-  enable: true
-  clientID:
-  clientSecret:
-  repo:
-  owner:
-  admin:
-  id:
-  distractionFreeMode:
+  # siteName:
+  # identifier:
+  # url:
+  # title:
+  # api:
+  # apikey:
+  # nesting: 4
+  # nocomment:
+  # admin:
+  # adminLabel:
 ```
 
 ### Valine
@@ -104,6 +148,15 @@ language: zh-CN
 实际上，你只需要参考下方页面获取配置所需的 appId 和 appKey 即可。（不需要安装，主题默认使用 CDN。模版也已经内置。）
 
 > [快速开始 - 获取 APP ID 和 APP Key](https://valine.js.org/quickstart.html#%E8%8E%B7%E5%8F%96APP-ID-%E5%92%8C-APP-Key)
+
+::: warning
+
+因为国内行情，建议直接使用 [LeanCloud 国际版](https://leancloud.app/)。
+如果你打算使用国内版，你需要绑定你的自定义域名并配置下方 `serverURLs` 字段。
+
+> [请各位用户在 10 月 1 日前绑定自己的域名 | LeanCloud](https://leancloudblog.com/mandatory-domain-config/)
+
+:::
 
 - `visitor`: 文章阅读量统计（请最好不要与 [不蒜子](#busuanzi) 同时启用）
 
@@ -143,7 +196,7 @@ Valine 的扩展和增强功能可以参考 [Valine-Admin](https://github.com/De
 
 ### MiniValine
 
-A simple and minimalist comment system based on Leancloud.
+简单且简约的评论系统。
 
 - GitHub: [MiniValine](https://github.com/MiniValine/MiniValine)
 - Demo: <https://minivaline.github.io/>
@@ -151,17 +204,12 @@ A simple and minimalist comment system based on Leancloud.
 ```yaml
 minivaline:
   enable: false
-  appId: # Your leancloud application appid
-  appKey: # Your leancloud application appkey
-  placeholder: Write a Comment # Comment box placeholder
-  adminEmailMd5: # The MD5 of Admin Email to show Admin Flag.
-  math: true # Support MathJax.
-  md: true # Support Markdown.
-  # MiniValine's display language depends on user's browser or system environment
-  # If you want everyone visiting your site to see a uniform language, you can set a force language value
-  # Available values: en  | zh-CN | (and many more)
-  # More i18n info: https://github.com/MiniValine/minivaline-i18n
-  lang:
+  md: true
+  # 更多选项 https://minivaline.js.org/docs/cn/#/Options 按照yml格式继续填写即可 （除了 [el] 选项）
+  # emoticonUrl 等列表选项 可参考 https://github.com/MiniValine/hexo-next-minivaline
+  # 下面是一个例子：
+  backend: waline
+  serverURL: https://waline.vercel.app
 ```
 
 ### LiveRe 来必力
@@ -177,6 +225,21 @@ minivaline:
 livere:
   enable: true
   uid:
+```
+
+### Twikoo
+
+一个简洁、安全、免费的静态网站评论系统，基于[腾讯云开发](https://curl.qcloud.com/KnnJtUom)。
+
+> 后端部署请参见[官方文档](https://twikoo.js.org/)。
+> [快速上手](https://twikoo.js.org/quick-start.html)
+
+```yaml
+twikoo:
+  enable: true
+  envId: xxxxxxxxxxxxxxx # 腾讯云环境id
+  region: # 环境地域，默认为 ap-shanghai，如果您的环境地域不是上海，需传此参数
+  option: # 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
 ```
 
 <!-- ## 分享
@@ -215,6 +278,10 @@ engine_search:
 ### 本地搜索
 
 您需要先安装 [hexo-generator-search](https://github.com/wzpan/hexo-generator-search)，并参考配置文档。
+
+```sh
+npm install hexo-generator-search
+```
 
 本主题使用原生 JavaScript 实现，无 jQuery 依赖。
 
@@ -268,6 +335,8 @@ algolia_search:
 google_analytics:
   enable: true
   id: UA-XXXXXXXXX-X
+  // 注意：最近新建的谷歌分析账号ID已经修改，格式如：G-XXXXXXXXXX，可以直接填入id一项，功能正常。
+  // 站点配置文件`_config.yml`中的站点部署的 url 应与 CNAME 中的域名（或xxxxx.github.io）一致
 ```
 
 ### busuanzi
@@ -293,6 +362,19 @@ busuanzi:
   site_pv_icon: icon-eye-line
   page_pv: true
   page_pv_icon: icon-eye-line
+```
+
+### LeanCloud Visitors
+
+基于 LeanCloud 的访问者统计，显示每篇文章的访问量。
+
+```yaml
+leancloud_visitors:
+  enable: false
+  app_id: # <your app id>
+  app_key: # <your app key>
+  # Required for apps from CN region
+  server_url: # <your server url>
 ```
 
 ## 广告
