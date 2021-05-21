@@ -1,7 +1,7 @@
 # cdn for third-party library (alternative include)
 algolia_search: https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
 instant_search: https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js
-anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js
+anime: https://cdn.jsdelivr.net/npm/animejs@latest
 scrollreveal: https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js
 katex:
   js: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js
@@ -33,21 +33,23 @@ revealjs:
       monokai: https://cdn.jsdelivr.net/npm/reveal.js@4.0.2/plugin/highlight/monokai.css
 prismjs:
   themes:
-    default: https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism.css
-    coy: https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-coy.css
-    dark: https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-dark.css
-    funky: https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-funky.css
-    okaidia: https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-okaidia.css
-    solarizedlight: https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-solarizedlight.css
-    tomorrow: https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-tomorrow.css
-    twilight: https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-twilight.css
+    default: https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css
+    coy: https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-coy.css
+    dark: https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-dark.css
+    funky: https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-funky.css
+    okaidia: https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-okaidia.css
+    solarizedlight: https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-solarizedlight.css
+    tomorrow: https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css
+    twilight: https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-twilight.css
 vue: https://cdn.jsdelivr.net/npm/vue@2.6.11
 
 # comment
 valine_js: https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js
-minivaline_js: https://cdn.jsdelivr.net/npm/minivaline@latest
+waline_js: https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js
+minivaline_js: https://cdn.jsdelivr.net/npm/minivaline@6
 # https://github.com/SukkaW/DisqusJS
 disqusjs:
   css: https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqusjs.css
   js: https://cdn.jsdelivr.net/npm/disqusjs@latest/dist/disqus.js
 twikoo: https://cdn.jsdelivr.net/npm/twikoo@latest/dist/twikoo.all.min.js
+iconify: https://code.iconify.design/1/1.0.7/iconify.min.js

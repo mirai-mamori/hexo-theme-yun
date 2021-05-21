@@ -50,27 +50,16 @@ social:
 
 ## 置顶
 
-在 Hexo 根目录下运行一下命令，以移除默认索引生成器，并使用具有置顶功能的索引生成器。
+> 确保你的 [hexo-generator-index](https://github.com/hexojs/hexo-generator-index) 为 `2.0.0` 或以上
 
-原插件的置顶功能等了很久还没有合并。[#26](https://github.com/hexojs/hexo-generator-index/pull/26)
+通过设置文章 Front Matter 中 `sticky` 属性以进行置顶，数值越高，优先级越高。
 
-（[1.1](https://github.com/hexojs/hexo-generator-index/pull/56) 快了）
-
-```sh
-npm uninstall hexo-generator-index --save
-npm install hexo-generator-index-pin-top --save
-```
-
-> 你可以参见 [hexo-generator-index-pin-top](https://github.com/netcan/hexo-generator-index-pin-top)
-> 注意，我发现使用 hexo-generator-index-pin-top 时，根据 `updated` 进行排序的功能将失效。（只能看官方的那个什么时候能合并了。）
-
-通过设置文章 Front Matter 中的 `top` 属性。
 设置置顶后，文章卡片右上角将出现置顶图标。
 
 ```md
 ---
 title: xxx
-top: true
+sticky: 100
 ---
 ```
 
@@ -79,22 +68,18 @@ top: true
 ```md
 ---
 title: xxx
-top: 1
+sticky: 1
 ---
 ```
 
 ```md
 ---
 title: xxx
-top: 2
+sticky: 2
 ---
 ```
 
-此时 `top: 2` 的文章将排列在 `top: 1` 的文章上面。
-
-::: tip
-实际上，你也可以设置根据 `updated` 排序，然后把 `updated` 的日期设置很大来实现置顶效果。
-:::
+此时 `sticky: 2` 的文章将排列在 `sticky: 1` 的文章上面。
 
 ## live2d
 
@@ -308,7 +293,7 @@ embeddedVideoTransformer: function() {
 
 ### KaTeX
 
-在文章中显示一些简单的数学公式，使用 [KaTeX](katex.or) 实现。具体方法请参见[官方文档](https://katex.org/)。
+在文章中显示一些简单的数学公式，使用 KaTeX 实现。具体方法请参见[官方文档](https://katex.org/)。
 
 > 其主要采用 CDN 的方式实现。
 
@@ -364,7 +349,7 @@ $E = mc^2$
 
 :::
 
-> 你可以访问 [Yun Test](https://www.yunyoujun.cn/yun/) 来查看实际效果。
+> 你可以访问 [Yun Test](https://www.yunyoujun.cn/yun/katex.html) 来查看实际效果。
 > 你可能需要一点时间来等待 `KaTeX` 库的加载，或刷新重试。
 
 ### [hexo-math](https://github.com/hexojs/hexo-math)

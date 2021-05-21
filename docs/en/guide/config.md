@@ -145,6 +145,8 @@ Set the website icon (make sure your `favicon.ico` file is placed under the `sou
 favicon: /favicon.ico
 ```
 
+> When your picture is in `png` format, please make sure its size is `16*16`, `32*32`, `64*64`, `128*128`, `256*256`, etc. .
+
 Yun Logo can use the corresponding opposite colors according to the light and dark theme of the browser.
 
 For example, the bright browser LOGO has a black stroke, and the dark browser LOGO has a white stroke.
@@ -213,12 +215,12 @@ cdn:
 ::: tip
 If you customize the resources used by the theme and want to preview and debug locally more conveniently,
 
-you can add `" dev ":" export NODE_ENV = dev && hexo s "` in the `scripts` field of `package.json` in the Hexo working directory.
+you can add `" dev ":" export NODE_ENV=development && hexo s "` in the `scripts` field of `package.json` in the Hexo working directory.
 
 ```json
 {
   "scripts": {
-    "dev": "export NODE_ENV= ev &&hexo s"
+    "dev": "export NODE_ENV=development &&hexo s"
   }
 }
 ```
@@ -734,7 +736,7 @@ cursor:
 
 ## Sidebar
 
-### Sidebar Background
+### Background & Tags
 
 - `tagcloud`: display it in sidebar
   - `amount`: the amount of tags
@@ -781,7 +783,7 @@ avatar:
 
 The effect after `mickey_mouse` is enabled:
 
-![mickey-mouse](https://i.loli.net/2020/03/10/fPn637T98lA2wJ4.png)
+![mickey-mouse](/images/mickey-mouse.jpg)
 
 ### Navigation
 
@@ -1018,6 +1020,8 @@ title: Level 1 Heading
 
 > No one will disable this feature, lol
 
+When you turn on the display number and switch to the directory, click the directory button again to switch the hidden number.
+
 - `list_number`:Displays list number
 - `max_depth`: Maximum heading depth of generated toc
 - `min_depth`: Minimum heading depth of generated toc
@@ -1223,6 +1227,8 @@ The icon between the year and the name.
 - `name`: icon name (i.e. `class`)
 - `animated`: whether to enable animation
 - `color`: icon color
+- `url`: link (can be `null`)
+- `title`: tooltip
 
 ```yaml
 footer:
@@ -1230,6 +1236,8 @@ footer:
     name: icon-cloud-line
     animated: true
     color: "#0078E7"
+    url: https://sponsors.yunyoujun.cn
+    title: Sponsors for YunYouJun
 ```
 
 ### Driver
@@ -1265,6 +1273,21 @@ live_time:
 ```
 
 > Remember to add 0, such as `2019-04-01` instead of `2019-4-1`.
+
+### Support
+
+Display support in footer, for example [又拍云联盟](https://www.upyun.com/league).
+
+```yaml
+footer:
+  support:
+    enable: true
+    title: Upyun
+    link: https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral
+    logo: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png
+    prefix: This website is supported by
+    suffix: CDN accelerated.
+```
 
 ### Custom Text
 

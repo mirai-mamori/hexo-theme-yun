@@ -147,6 +147,8 @@ head:
 favicon: /favicon.ico
 ```
 
+> 当你的图片为 `png` 格式时，请确保其尺寸为 `16*16`、`32*32`、`64*64`、`128*128`、`256*256` 等符合规范的大小。
+
 现在的 Yun Logo 可以根据浏览器的亮暗主题，采用对应的相反色。
 
 譬如：亮色浏览器 LOGO 为黑色描边，暗色浏览器 LOGO 为白色描边。
@@ -216,12 +218,12 @@ cdn:
 ::: tip
 如果你自己对主题使用到的资源进行了自定义，并想要更方便地在本地预览调试。
 
-你可以在 Hexo 的工作目录下 `package.json` 中 `scripts` 字段添加 `"dev": "export NODE_ENV=dev && hexo s"`。
+你可以在 Hexo 的工作目录下 `package.json` 中 `scripts` 字段添加 `"dev": "export NODE_ENV=development && hexo s"`。
 
 ```json
 {
   "scripts": {
-    "dev": "export NODE_ENV=dev && hexo s"
+    "dev": "export NODE_ENV=development && hexo s"
   }
 }
 ```
@@ -741,7 +743,7 @@ cursor:
 
 ## 侧边栏
 
-### 侧边栏背景
+### 背景与标签
 
 - `tagcloud`: 在侧边栏显示 Hexo 原生标签页
   - `amount`: 显示的标签数量
@@ -788,7 +790,7 @@ avatar:
 
 `mickey_mouse` 开启后效果：
 
-![mickey-mouse](https://i.loli.net/2020/03/10/fPn637T98lA2wJ4.png)
+![mickey-mouse](/images/mickey-mouse.jpg)
 
 ### 导航
 
@@ -1029,6 +1031,8 @@ title: 一级标题
 
 > 没什么人会要关这个功能的吧，hhh（所以我根本没加关闭的功能）
 
+当你开启显示编号，并切换到目录时，再次点击目录按钮，可切换隐藏目录编号。
+
 - `list_number`: 显示编号
 - `max_depth`: 生成 TOC 的最大深度
 - `min_depth`: 生成 TOC 的最小深度
@@ -1075,6 +1079,7 @@ PrismJS 是一个轻量级的代码高亮库，相比 highlight.js，prismjs 可
 我们可以通过 CDN 快速切换主题，本主题也支持为亮暗模式设置不同的代码高亮主题。
 
 > 当前 Prism 支持的语言：<https://prismjs.com/#supported-languages>
+> 你应当使用更通用的 `cpp` 替代 `c++` 以高亮 C++ 代码
 
 在 Hexo （须升级至 5.0 以上版本）工作目录下的 `_config.yml` 中配置：
 
@@ -1235,6 +1240,8 @@ footer:
 - `name`: 图标名称（即 `class`）
 - `animated`: 是否开启动画
 - `color`: 图标颜色
+- `url`: 链接（留空则为 `span`，存在则可自定义链接）
+- `title`: 提示
 
 ```yaml
 footer:
@@ -1242,6 +1249,8 @@ footer:
     name: icon-cloud-line
     animated: true
     color: "#0078E7"
+    url: https://sponsors.yunyoujun.cn
+    title: 云游君的赞助者们
 ```
 
 ### 驱动
@@ -1293,6 +1302,21 @@ footer:
 ```
 
 > 注意记得补 0，譬如 `2019-04-01` 而不是 `2019-4-1`。
+
+### 支持
+
+譬如在页脚显示支持，如[又拍云联盟](https://www.upyun.com/league)
+
+```yaml
+footer:
+  support:
+    enable: true
+    title: 又拍云
+    link: https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral
+    logo: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png
+    prefix: 本网站由
+    suffix: 提供 CDN 加速
+```
 
 ### 自定义文本
 
